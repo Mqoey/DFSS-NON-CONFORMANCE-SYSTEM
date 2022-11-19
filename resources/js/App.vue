@@ -1,3 +1,5 @@
 <template>
-    How To Install Vue 3 in Laravel 9 with Vite - TechvBlogs
+  <div id="app">
+    <h1>My App</h1>
+  </div>
 </template>
