@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class InspectorSeeder extends Seeder
 {
@@ -14,6 +16,11 @@ class InspectorSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('users')->insert([
+            'name' => 'inspector',
+            'email' => 'inspector@mail.com',
+            'password' => Hash::make('inspector'),
+            'role' => 'inspector',
+        ]);
     }
 }
