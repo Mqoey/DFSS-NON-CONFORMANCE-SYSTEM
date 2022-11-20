@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InspectorAdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +24,13 @@ Route::middleware('auth', 'inspectoradmin')->group(function () {
     Route::get('/inspectoradmindashboard', function () {
         return view('inspectoradmin.dashboard');
     })->name('inspectoradmin.dashboard');
+
+    Route::get('/user', [InspectorAdminController::class, 'viewusers'])->name('user.index');
+    Route::get('/create/user', [InspectorAdminController::class, 'createuser'])->name('user.create');
+    Route::post('/create/user', [InspectorAdminController::class, 'storeuser'])->name('user.store');
+    Route::post('/edit/user/{user}', [InspectorAdminController::class, 'edituser'])->name('user.edit');
+    Route::post('/update/user/{user}', [InspectorAdminController::class, 'updateuser'])->name('user.update');
+    Route::post('/delete/user/{user}', [InspectorAdminController::class, 'destroyuser'])->name('user.destroy');
 });
 
 Route::middleware('auth', 'superadmin')->group(function () {

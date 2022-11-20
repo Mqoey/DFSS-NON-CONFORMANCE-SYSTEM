@@ -31,6 +31,6 @@ class SuperUserAuthenticated
                 return $next($request);
             }
         }
-        abort(403);  // permission denied error
+        return route('login');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Inspector;
 use App\Http\Requests\StoreInspectorRequest;
 use App\Http\Requests\UpdateInspectorRequest;
+use App\Models\User;
 
 class InspectorController extends Controller
 {
@@ -17,6 +18,8 @@ class InspectorController extends Controller
     {
         //
     }
+
+   
 
     /**
      * Show the form for creating a new resource.
