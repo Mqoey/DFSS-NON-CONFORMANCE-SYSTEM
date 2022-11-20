@@ -1,75 +1,15 @@
-{{-- <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-input-label for="email" :value="__('Email')" />
-
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
-
 <!DOCTYPE html>
-<html lang="en"> --}}
-
-<!-- Mirrored from admin.pixelstrap.com/zeta/theme/login-sa-validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 19 Nov 2022 21:15:14 GMT -->
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Zeta admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+        content="LevierSoft Admin admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 LevierSoft Admin with unlimited possibilities.">
     <meta name="keywords"
-        content="admin template, Zeta admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="pixelstrap">
+        content="LevierSoft Admin, LevierSoft Admin LevierSoft Admin, dashboard template, flat LevierSoft Admin, responsive LevierSoft Admin, web app">
+    <meta name="author" content="leviersoft solution">
     <link rel="icon" href="assets/images/logo/favicon-icon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/logo/favicon-icon.png" type="image/x-icon">
     <title> DFSS | Login </title>
@@ -111,18 +51,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="login-card">
-                        <x-auth-session-status class="mb-4" :status="session('status')" />
                         <form class="theme-form login-form" method="POST" action="{{ route('login') }}">
                             @csrf
                             <h4>Login</h4>
                             <h6>Welcome back! Log in to your account.</h6>
+                            <x-input-error :messages="$errors->get('email')" style="color: red" class="mt-2" />
                             <div class="form-group">
                                 <label>Email Address</label>
                                 <div class="input-group"><span class="input-group-text"><i
                                             data-feather="user"></i></span>
                                     <input class="form-control" name="email" type="email" required=""
                                         placeholder="test@mail.com">
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
                             </div>
                             <div class="form-group">
