@@ -1,4 +1,5 @@
 @extends('layouts.inspectoradmin')
+@section('title', 'Users')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
@@ -27,6 +28,11 @@
                             <div class="table-responsive">
                                 @if (Session::has('success'))
                                     <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Holy
+                                            !</strong> You can check in on some of those fields below.
+                                        <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
                                 @endif
                                 <table class="display" id="basic-1">
                                     <thead>

@@ -6,6 +6,7 @@ use App\Models\SuperAdmin;
 use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
@@ -42,8 +43,9 @@ class SuperAdminController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->save();
+
         if ($user) {
             return redirect(route('user.index'))
                 ->with('success', 'Created User Successfully');

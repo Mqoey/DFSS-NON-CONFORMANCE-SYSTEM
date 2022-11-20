@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\InspectorAdminController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,12 +32,12 @@ Route::middleware('auth', 'superadmin')->group(function () {
         return view('superadmin.dashboard');
     })->name('superadmin.dashboard');
 
-    Route::get('/user', [InspectorAdminController::class, 'viewusers'])->name('user.index');
-    Route::get('/create/user', [InspectorAdminController::class, 'createuser'])->name('user.create');
-    Route::post('/create/user', [InspectorAdminController::class, 'storeuser'])->name('user.store');
-    Route::post('/edit/user/{user}', [InspectorAdminController::class, 'edituser'])->name('user.edit');
-    Route::post('/update/user/{user}', [InspectorAdminController::class, 'updateuser'])->name('user.update');
-    Route::post('/delete/user/{user}', [InspectorAdminController::class, 'destroyuser'])->name('user.destroy');
+    Route::get('/user', [SuperAdminController::class, 'viewusers'])->name('user.index');
+    Route::get('/create/user', [SuperAdminController::class, 'createuser'])->name('user.create');
+    Route::post('/create/user', [SuperAdminController::class, 'storeuser'])->name('user.store');
+    Route::post('/edit/user/{user}', [SuperAdminController::class, 'edituser'])->name('user.edit');
+    Route::post('/update/user/{user}', [SuperAdminController::class, 'updateuser'])->name('user.update');
+    Route::post('/delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');
 });
 
 require __DIR__ . '/auth.php';

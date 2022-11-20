@@ -1,4 +1,5 @@
 @extends('layouts.inspectoradmin')
+@section('title', 'Users')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
