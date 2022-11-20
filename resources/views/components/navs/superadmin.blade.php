@@ -15,6 +15,14 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <i data-feather="users"></i>
+                    <span>Users</span></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('user.index') }}">All Users</a></li>
+                    <li><a href="{{ route('user.create') }}">Create User</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>

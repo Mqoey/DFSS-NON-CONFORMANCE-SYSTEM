@@ -25,6 +25,9 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                                @endif
                                 <table class="display" id="basic-1">
                                     <thead>
                                         <tr>

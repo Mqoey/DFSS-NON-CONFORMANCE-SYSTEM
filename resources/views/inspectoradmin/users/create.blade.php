@@ -23,6 +23,9 @@
                         <div class="card-header pb-0">
                             <h5>Add User</h5>
                         </div>
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                        @endif
                         <form class="form theme-form" method="POST" action="{{ route('user.store') }}">
                             @csrf
                             <div class="card-body">

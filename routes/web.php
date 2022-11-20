@@ -24,6 +24,12 @@ Route::middleware('auth', 'inspectoradmin')->group(function () {
     Route::get('/inspectoradmindashboard', function () {
         return view('inspectoradmin.dashboard');
     })->name('inspectoradmin.dashboard');
+});
+
+Route::middleware('auth', 'superadmin')->group(function () {
+    Route::get('/superadmindashboard', function () {
+        return view('superadmin.dashboard');
+    })->name('superadmin.dashboard');
 
     Route::get('/user', [InspectorAdminController::class, 'viewusers'])->name('user.index');
     Route::get('/create/user', [InspectorAdminController::class, 'createuser'])->name('user.create');
@@ -31,12 +37,6 @@ Route::middleware('auth', 'inspectoradmin')->group(function () {
     Route::post('/edit/user/{user}', [InspectorAdminController::class, 'edituser'])->name('user.edit');
     Route::post('/update/user/{user}', [InspectorAdminController::class, 'updateuser'])->name('user.update');
     Route::post('/delete/user/{user}', [InspectorAdminController::class, 'destroyuser'])->name('user.destroy');
-});
-
-Route::middleware('auth', 'superadmin')->group(function () {
-    Route::get('/superadmindashboard', function () {
-        return view('superadmin.dashboard');
-    })->name('superadmin.dashboard');
 });
 
 require __DIR__ . '/auth.php';

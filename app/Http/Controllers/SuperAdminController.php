@@ -5,9 +5,54 @@ namespace App\Http\Controllers;
 use App\Models\SuperAdmin;
 use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
+use App\Models\User;
 
 class SuperAdminController extends Controller
 {
+
+    public function viewusers()
+    {
+        $users = User::all();
+        return view('inspectoradmin.users.index')
+            ->with('users', $users);
+    }
+
+    public function createuser()
+    {
+        return view('inspectoradmin.users.create');
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreInspectorAdminRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeuser(StoreSuperAdminRequest $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+        if ($user) {
+            return redirect(route('user.index'))
+                ->with('success', 'Created User Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
