@@ -43,7 +43,7 @@
                                     <tbody>
                                         @foreach ($roles as $role)
                                             <tr>
-                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $role->description }}</td>
                                                 <td>
                                                     <div>
                                                         <a><i data-feather="edit"></i></a>

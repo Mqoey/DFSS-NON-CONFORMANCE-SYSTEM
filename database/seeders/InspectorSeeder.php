@@ -21,6 +21,8 @@ class InspectorSeeder extends Seeder
             'email' => 'inspector@mail.com',
             'password' => Hash::make('inspector'),
             'role' => 'inspector',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

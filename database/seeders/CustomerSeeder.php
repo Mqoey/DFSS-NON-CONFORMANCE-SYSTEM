@@ -21,6 +21,8 @@ class CustomerSeeder extends Seeder
             'email' => 'customer@mail.com',
             'password' => Hash::make('customer'),
             'role' => 'customer',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
