@@ -40,6 +40,14 @@
                 </ul>
             </li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <i data-feather="radio"></i>
+                    <span>Airports</span></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('airport.index') }}">All Airports</a></li>
+                    <li><a href="{{ route('airport.create') }}">Create Airport</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                     <i data-feather="user-check"></i>
                     <span>Users</span></a>
                 <ul class="sidebar-submenu">

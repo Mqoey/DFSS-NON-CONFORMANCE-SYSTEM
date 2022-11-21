@@ -1,17 +1,17 @@
 @extends('layouts.superadmin')
-@section('title', 'Customers')
+@section('title', 'Airports')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <h3>Add Customer</h3>
+                        <h3>Add Airport</h3>
                     </div>
                     <div class="col-12 col-sm-6">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Add Customer</li>
+                            <li class="breadcrumb-item">Add Airport</li>
                         </ol>
                     </div>
                 </div>
@@ -28,53 +28,36 @@
                                     aria-label="Close"></button>
                             </div>
                         @endif
-                        <form class="form theme-form" method="POST" action="{{ route('customer.store') }}">
+                        <form class="form theme-form" method="POST" action="{{ route('airport.store') }}">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
-                                            <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label class="form-label" for="validationCustom01">First name</label>
-                                                    <input class="form-control" id="validationCustom01" type="text"
-                                                        name="first_name" placeholder="firstname" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="form-label" for="validationCustom02">Last name</label>
-                                                    <input class="form-control" id="validationCustom02" type="text"
-                                                        name="last_name" placeholder="lastname" required>
-                                                </div>
-                                            </div>
+                                            <label class="form-label" for="exampleFormControlInput1">Name</label>
+                                            <input class="form-control" id="exampleFormControlInput1" type="text"
+                                                name="name" required placeholder="name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlInput1">Email address</label>
-                                            <input class="form-control" id="exampleFormControlInput1" type="email"
-                                                name="email" required placeholder="name@example.com">
+                                            <label class="form-label" for="exampleFormControlInput1">Address</label>
+                                            <input class="form-control" id="exampleFormControlInput1" type="text"
+                                                name="address" required placeholder="address">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-3">
-                                            <input class="form-control" name="password" id="exampleInputPassword2"
-                                                type="hidden" value="12345678" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlSelect9">Select Role </label>
-                                            <select class="form-select digits" name="role"
+                                            <label class="form-label" for="exampleFormControlSelect9">Select City</label>
+                                            <select class="form-select digits" name="city"
                                                 id="exampleFormControlSelect9">
-                                                @foreach ($roles as $role)
-                                                    <option value="{{ $role->name }}">{{ $role->description }}</option>
-                                                @endforeach
+                                                <option value="Harare">Harare</option>
+                                                <option value="Bulawayo">Bulawayo</option>
+                                                <option value="Victoria Falls">Victoria Falls</option>
                                             </select>
                                         </div>
                                     </div>

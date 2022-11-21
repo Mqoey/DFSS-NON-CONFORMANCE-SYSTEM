@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AirportController;
 use App\Http\Controllers\InspectorAdminController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,13 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/edit/customer/{customer}', [SuperAdminController::class, 'editcustomer'])->name('customer.edit');
     Route::post('/update/customer/{customer}', [SuperAdminController::class, 'updatecustomer'])->name('customer.update');
     Route::post('/delete/customer/{customer}', [SuperAdminController::class, 'destroycustomer'])->name('customer.destroy');
+
+    Route::get('/airport', [AirportController::class, 'index'])->name('airport.index');
+    Route::get('/create/airport', [AirportController::class, 'create'])->name('airport.create');
+    Route::post('/create/airport', [AirportController::class, 'store'])->name('airport.store');
+    Route::post('/edit/airport/{airport}', [AirportController::class, 'edit'])->name('airport.edit');
+    Route::post('/update/airport/{airport}', [AirportController::class, 'update'])->name('airport.update');
+    Route::post('/delete/airport/{airport}', [AirportController::class, 'destroy'])->name('airport.destroy');
 });
 
 require __DIR__ . '/auth.php';

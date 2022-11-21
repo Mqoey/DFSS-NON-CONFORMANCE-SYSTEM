@@ -38,12 +38,24 @@ class AirportController extends Controller
      */
     public function store(StoreAirportRequest $request)
     {
-        $airport = Airport::create($request->validated());
+        // validate the request
+        $request->validate([
+            'name' => 'required',
+            'city' => 'required',
+            'address' => 'required',
+        ]);
+
+        $airport = new Airport();
+        $airport->name = $request->name;
+        $airport->city = $request->city;
+        $airport->address = $request->address;
+        $airport->save();
+
         if ($airport) {
-            return redirect()->route('airports.index')
+            return redirect()->route('airport.index')
                 ->with('success', 'Airport created successfully.');
         } else {
-            return redirect()->route('airports.create')
+            return redirect()->route('airport.create')
                 ->with('error', 'Airport could not be created.');
         }
     }
