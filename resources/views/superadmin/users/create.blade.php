@@ -25,7 +25,11 @@
                             <h5>Add User</h5>
                         </div>
                         @if (Session::has('error'))
-                            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{{ Session::get('error') }}</strong>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
                         @endif
                         <form class="form theme-form" method="POST" action="{{ route('user.store') }}">
                             @csrf
