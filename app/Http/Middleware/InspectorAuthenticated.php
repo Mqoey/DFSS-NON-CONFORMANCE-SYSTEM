@@ -17,19 +17,16 @@ class InspectorAuthenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
-            /** @var User $user */
-            $user = Auth::user();
-
-            if ($user->hasRole('superadmin')) {
-                return redirect(route('superadmin.dashboard'));
-            } else if ($user->hasRole('customer')) {
-                return redirect(route('customer.dashboard'));
-            } else if ($user->hasRole('inspectoradmin')) {
-                return redirect(route('inspectoradmin.dashboard'));
-            } else if ($user->hasRole('inspector')) {
-                return $next($request);
-            }
+        if (Auth::check() && Auth::user()->role == 'inspector') {
+            return $next($request);
+        } else if (Auth::user()->role == 'inspectoradmin') {
+            return redirect(route('inspectoradmin.dashboard'));
+        } else if (Auth::user()->role == 'inspectoradmin') {
+            return redirect(route('inspectoradmin.dashboard'));
+        } else if (Auth::user()->role == 'customer') {
+            return redirect(route('customer.dashboard'));
+        } else if (Auth::user()->role == 'superadmin') {
+            return redirect(route('superadmin.dashboard'));
         }
         return route('login');
     }
