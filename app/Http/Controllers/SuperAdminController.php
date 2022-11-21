@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SuperAdmin;
 use App\Http\Requests\StoreSuperAdminRequest;
-use App\Http\Requests\UpdateSuperAdminRequest;
+use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
+    public function viewroles()
+    {
+        $roles = Role::all();
+        return view('superadmin.roles.index')
+            ->with('roles', $roles);
+    }
 
     public function viewusers()
     {
         $users = User::all();
         return view('superadmin.users.index')
             ->with('users', $users);
-    }
-
-    public function viewroles()
-    {
-        $roles = Role::all();
-        return view('superadmin.roles.index')
-            ->with('roles', $roles);
     }
 
     public function createuser()
@@ -33,27 +31,21 @@ class SuperAdminController extends Controller
             ->with('roles', $roles);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreInspectorAdminRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function storeuser(StoreSuperAdminRequest $request)
     {
-        // dd($request->all());
         $request->validate([
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'role' => 'required',
         ]);
 
         $user = new User();
-        $user->name = $request->name;
+        $user->name = $request->first_name . ' ' . $request->last_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role = $request->role;
         $user->save();
 
         if ($user) {
@@ -65,79 +57,45 @@ class SuperAdminController extends Controller
         }
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    // customers
+
+    public function viewcustomers()
     {
-        //
+        $customers = Customer::all();
+        return view('superadmin.customers.index')
+            ->with('customers', $customers);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createcustomer()
     {
-        //
+        $roles = Role::all();
+        return view('superadmin.customers.create')
+            ->with('roles', $roles);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSuperAdminRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreSuperAdminRequest $request)
+    public function storecustomer(StoreSuperAdminRequest $request)
     {
-        //
-    }
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SuperAdmin  $superAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SuperAdmin $superAdmin)
-    {
-        //
-    }
+        $customer = new Customer();
+        $customer->name = $request->first_name . ' ' . $request->last_name;
+        $customer->email = $request->email;
+        $customer->password = Hash::make($request->password);
+        $customer->role = $request->role;
+        $customer->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SuperAdmin  $superAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SuperAdmin $superAdmin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSuperAdminRequest  $request
-     * @param  \App\Models\SuperAdmin  $superAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateSuperAdminRequest $request, SuperAdmin $superAdmin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\SuperAdmin  $superAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SuperAdmin $superAdmin)
-    {
-        //
+        if ($customer) {
+            return redirect(route('customer.index'))
+                ->with('success', 'Created Customer Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
     }
 }

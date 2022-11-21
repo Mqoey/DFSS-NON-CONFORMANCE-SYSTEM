@@ -17,12 +17,45 @@
             </li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                     <i data-feather="users"></i>
+                    <span>Customers</span></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('customer.index') }}">All Customers</a></li>
+                    <li><a href="{{ route('customer.create') }}">Create Customer</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <i data-feather="check-circle"></i>
+                    <span>Inspector</span></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('customer.index') }}">All Inspectors</a></li>
+                    <li><a href="{{ route('customer.create') }}">Create Inspector</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <i data-feather="check-square"></i>
+                    <span>Inspector Admins</span></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('customer.index') }}">All Inspector Admins</a></li>
+                    <li><a href="{{ route('customer.create') }}">Create Inspector Admin</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <i data-feather="user-check"></i>
                     <span>Users</span></a>
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('user.index') }}">All Users</a></li>
                     <li><a href="{{ route('user.create') }}">Create User</a></li>
                     <li><a href="{{ route('role.index') }}">View Roles</a></li>
                 </ul>
+            </li>
+            <li class="sidebar-list">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="sidebar-link sidebar-title link-nav" href="route('logout')"
+                        onclick="event.preventDefault();
+                                                this.closest('form').submit();"><i
+                            data-feather="log-out"> </i><span>Logout</span></a>
+                </form>
             </li>
         </ul>
     </div>

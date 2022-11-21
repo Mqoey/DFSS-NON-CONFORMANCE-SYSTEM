@@ -1,17 +1,17 @@
 @extends('layouts.superadmin')
-@section('title', 'Users')
+@section('title', 'Customers')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <h3>Users</h3>
+                        <h3>Customers</h3>
                     </div>
                     <div class="col-12 col-sm-6">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Users</li>
+                            <li class="breadcrumb-item">Customers</li>
                         </ol>
                     </div>
                 </div>
@@ -40,18 +40,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @foreach ($customers as $customer)
                                             <tr>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $customer->name }}</td>
+                                                <td>{{ $customer->email }}</td>
                                                 <td>
-                                                    @if ($user->role == 'superadmin')
+                                                    @if ($customer->role == 'superadmin')
                                                         Super Admin
-                                                    @elseif($user->role == 'inspectoradmin')
+                                                    @elseif($customer->role == 'inspectoradmin')
                                                         Inspector Admin
-                                                    @elseif($user->role == 'inspector')
+                                                    @elseif($customer->role == 'inspector')
                                                         Inspector
-                                                    @elseif($user->role == 'customer')
+                                                    @elseif($customer->role == 'customer')
                                                         Customer
                                                     @endif
                                                 </td>

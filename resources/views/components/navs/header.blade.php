@@ -109,7 +109,7 @@
                                 <a href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();"><i
-                                        data-feather="log-in"> </i><span>Logout</span></a>
+                                        data-feather="log-out"> </i><span>Logout</span></a>
                             </form>
                         </li>
                     </ul>

@@ -40,6 +40,13 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');
 
     Route::get('/role', [SuperAdminController::class, 'viewroles'])->name('role.index');
+
+    Route::get('/customer', [SuperAdminController::class, 'viewcustomers'])->name('customer.index');
+    Route::get('/create/customer', [SuperAdminController::class, 'createcustomer'])->name('customer.create');
+    Route::post('/create/customer', [SuperAdminController::class, 'storecustomer'])->name('customer.store');
+    Route::post('/edit/customer/{customer}', [SuperAdminController::class, 'editcustomer'])->name('customer.edit');
+    Route::post('/update/customer/{customer}', [SuperAdminController::class, 'updatecustomer'])->name('customer.update');
+    Route::post('/delete/customer/{customer}', [SuperAdminController::class, 'destroycustomer'])->name('customer.destroy');
 });
 
 require __DIR__ . '/auth.php';

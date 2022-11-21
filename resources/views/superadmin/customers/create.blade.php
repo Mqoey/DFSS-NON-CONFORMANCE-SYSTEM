@@ -1,17 +1,17 @@
 @extends('layouts.superadmin')
-@section('title', 'Users')
+@section('title', 'Customers')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <h3>Add User</h3>
+                        <h3>Add Customer</h3>
                     </div>
                     <div class="col-12 col-sm-6">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Add User</li>
+                            <li class="breadcrumb-item">Add Customer</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                                     aria-label="Close"></button>
                             </div>
                         @endif
-                        <form class="form theme-form" method="POST" action="{{ route('user.store') }}">
+                        <form class="form theme-form" method="POST" action="{{ route('customer.store') }}">
                             @csrf
                             <div class="card-body">
                                 <div class="row">

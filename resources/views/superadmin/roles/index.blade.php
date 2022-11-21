@@ -21,9 +21,6 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
-                        <div class="card-header pb-0">
-                            <h5>All Roles</h5>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 @if (Session::has('success'))
@@ -37,19 +34,12 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($roles as $role)
                                             <tr>
                                                 <td>{{ $role->description }}</td>
-                                                <td>
-                                                    <div>
-                                                        <a><i data-feather="edit"></i></a>
-                                                        <a><i data-feather="trash"></i></a>
-                                                    </div>
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
