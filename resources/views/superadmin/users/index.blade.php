@@ -1,4 +1,4 @@
-@extends('layouts.inspectoradmin')
+@extends('layouts.superadmin')
 @section('title', 'Users')
 @section('content')
     <div class="page-body">
@@ -27,9 +27,8 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 @if (Session::has('success'))
-                                    <div class="alert alert-success">{{ Session::get('success') }}</div>
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Holy
-                                            !</strong> You can check in on some of those fields below.
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>{{ Session::get('success') }}</strong>
                                         <button class="btn-close" type="button" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
                                     </div>

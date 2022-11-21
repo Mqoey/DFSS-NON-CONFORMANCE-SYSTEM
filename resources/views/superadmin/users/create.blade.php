@@ -1,4 +1,4 @@
-@extends('layouts.inspectoradmin')
+@extends('layouts.superadmin')
 @section('title', 'Users')
 @section('content')
     <div class="page-body">
