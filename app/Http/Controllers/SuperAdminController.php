@@ -28,7 +28,9 @@ class SuperAdminController extends Controller
 
     public function createuser()
     {
-        return view('superadmin.users.create');
+        $roles = Role::all();
+        return view('superadmin.users.create')
+            ->with('roles', $roles);
     }
 
 

@@ -67,10 +67,9 @@
                                             <label class="form-label" for="exampleFormControlSelect9">Select Role </label>
                                             <select class="form-select digits" name="role"
                                                 id="exampleFormControlSelect9">
-                                                <option value="customer">Customer</option>
-                                                <option value="inspector">Inspector</option>
-                                                <option value="inspectoradmin">Inspector Admin</option>
-                                                <option value="superadmin">Super Admin</option>
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role->name }}">{{ $role->description }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
