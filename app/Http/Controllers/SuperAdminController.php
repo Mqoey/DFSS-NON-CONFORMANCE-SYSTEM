@@ -14,13 +14,13 @@ class SuperAdminController extends Controller
     public function viewusers()
     {
         $users = User::all();
-        return view('inspectoradmin.users.index')
+        return view('superadmin.users.index')
             ->with('users', $users);
     }
 
     public function createuser()
     {
-        return view('inspectoradmin.users.create');
+        return view('superadmin.users.create');
     }
 
 
