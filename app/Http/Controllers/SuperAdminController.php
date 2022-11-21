@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SuperAdmin;
 use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,6 +17,13 @@ class SuperAdminController extends Controller
         $users = User::all();
         return view('superadmin.users.index')
             ->with('users', $users);
+    }
+
+    public function viewroles()
+    {
+        $roles = Role::all();
+        return view('superadmin.roles.index')
+            ->with('roles', $roles);
     }
 
     public function createuser()

@@ -38,6 +38,8 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/edit/user/{user}', [SuperAdminController::class, 'edituser'])->name('user.edit');
     Route::post('/update/user/{user}', [SuperAdminController::class, 'updateuser'])->name('user.update');
     Route::post('/delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');
+
+    Route::get('/role', [SuperAdminController::class, 'viewroles'])->name('role.index');
 });
 
 require __DIR__ . '/auth.php';

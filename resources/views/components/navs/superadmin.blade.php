@@ -21,6 +21,7 @@
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('user.index') }}">All Users</a></li>
                     <li><a href="{{ route('user.create') }}">Create User</a></li>
+                    <li><a href="{{ route('role.index') }}">View Roles</a></li>
                 </ul>
             </li>
         </ul>
