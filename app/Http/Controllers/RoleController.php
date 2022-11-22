@@ -15,7 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        return view('superadmin.roles.index')
+            ->with('roles', $roles);
     }
 
     /**

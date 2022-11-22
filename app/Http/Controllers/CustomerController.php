@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -15,7 +17,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('superadmin.customers.index')
+            ->with('customers', $customers);
     }
 
     /**
@@ -25,7 +29,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('superadmin.customers.create')
+            ->with('roles', $roles);
     }
 
     /**
@@ -36,7 +42,28 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        $customer = new Customer();
+        $customer->name = $request->first_name . ' ' . $request->last_name;
+        $customer->email = $request->email;
+        $customer->password = Hash::make($request->password);
+        $customer->role = $request->role;
+        $customer->save();
+
+        if ($customer) {
+            return redirect(route('customer.index'))
+                ->with('success', 'Created Customer Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
     }
 
     /**

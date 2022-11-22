@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
-    public function viewroles()
-    {
-        $roles = Role::all();
-        return view('superadmin.roles.index')
-            ->with('roles', $roles);
-    }
-
     public function viewusers()
     {
         $users = User::all();
@@ -36,7 +29,7 @@ class SuperAdminController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users',
             'password' => 'required',
             'role' => 'required',
         ]);
@@ -51,48 +44,6 @@ class SuperAdminController extends Controller
         if ($user) {
             return redirect(route('user.index'))
                 ->with('success', 'Created User Successfully');
-        } else {
-            return redirect()->back()
-                ->with('error', 'Something went wrong');
-        }
-    }
-
-    // customers
-
-    public function viewcustomers()
-    {
-        $customers = Customer::all();
-        return view('superadmin.customers.index')
-            ->with('customers', $customers);
-    }
-
-    public function createcustomer()
-    {
-        $roles = Role::all();
-        return view('superadmin.customers.create')
-            ->with('roles', $roles);
-    }
-
-    public function storecustomer(StoreSuperAdminRequest $request)
-    {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role' => 'required',
-        ]);
-
-        $customer = new Customer();
-        $customer->name = $request->first_name . ' ' . $request->last_name;
-        $customer->email = $request->email;
-        $customer->password = Hash::make($request->password);
-        $customer->role = $request->role;
-        $customer->save();
-
-        if ($customer) {
-            return redirect(route('customer.index'))
-                ->with('success', 'Created Customer Successfully');
         } else {
             return redirect()->back()
                 ->with('error', 'Something went wrong');

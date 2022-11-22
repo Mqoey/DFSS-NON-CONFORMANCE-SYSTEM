@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AirportController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InspectorAdminController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,14 +42,14 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/update/user/{user}', [SuperAdminController::class, 'updateuser'])->name('user.update');
     Route::post('/delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');
 
-    Route::get('/role', [SuperAdminController::class, 'viewroles'])->name('role.index');
+    Route::get('/role', [RoleController::class, 'index'])->name('role.index');
 
-    Route::get('/customer', [SuperAdminController::class, 'viewcustomers'])->name('customer.index');
-    Route::get('/create/customer', [SuperAdminController::class, 'createcustomer'])->name('customer.create');
-    Route::post('/create/customer', [SuperAdminController::class, 'storecustomer'])->name('customer.store');
-    Route::post('/edit/customer/{customer}', [SuperAdminController::class, 'editcustomer'])->name('customer.edit');
-    Route::post('/update/customer/{customer}', [SuperAdminController::class, 'updatecustomer'])->name('customer.update');
-    Route::post('/delete/customer/{customer}', [SuperAdminController::class, 'destroycustomer'])->name('customer.destroy');
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::get('/create/customer', [CustomerController::class, 'create'])->name('customer.create');
+    Route::post('/create/customer', [CustomerController::class, 'store'])->name('customer.store');
+    Route::post('/edit/customer/{customer}', [CustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/update/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
+    Route::post('/delete/customer/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 
     Route::get('/airport', [AirportController::class, 'index'])->name('airport.index');
     Route::get('/create/airport', [AirportController::class, 'create'])->name('airport.create');
