@@ -35,6 +35,8 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Activate</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
