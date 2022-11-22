@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
@@ -50,19 +51,29 @@ class CustomerController extends Controller
             'role' => 'required',
         ]);
 
-        $customer = new Customer();
-        $customer->name = $request->first_name . ' ' . $request->last_name;
-        $customer->email = $request->email;
-        $customer->password = Hash::make($request->password);
-        $customer->role = $request->role;
-        $customer->save();
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = "customer";
+        $user->save();
 
-        if ($customer) {
-            return redirect(route('customer.index'))
-                ->with('success', 'Created Customer Successfully');
+        if ($user) {
+            $customer = new Customer();
+            $customer->user_id = $user->id;
+            $customer->company = $request->company;
+            $customer->save();
+
+            if ($customer) {
+                return redirect()->route('customer.index')
+                    ->with('success', 'Customer created successfully');
+            } else {
+                return redirect()->route('customer.create')
+                    ->with('error', 'Customer not created');
+            }
         } else {
-            return redirect()->back()
-                ->with('error', 'Something went wrong');
+            return redirect()->back()->with('error', 'Something went wrong');
         }
     }
 

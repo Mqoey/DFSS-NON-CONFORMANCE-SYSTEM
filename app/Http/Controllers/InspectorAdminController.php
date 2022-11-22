@@ -16,7 +16,9 @@ class InspectorAdminController extends Controller
      */
     public function index()
     {
-        //
+        $inspectorAdmin = InspectorAdmin::all();
+        return view('superadmin.inspectoradmin.index')
+            ->with('inspectorAdmin', $inspectorAdmin);
     }
 
 
@@ -28,9 +30,7 @@ class InspectorAdminController extends Controller
      */
     public function create()
     {
-        $inspectorAdmin = InspectorAdmin::all();
-        return view('superadmin.inspectoradmin.index')
-            ->with('inspectorAdmin', $inspectorAdmin);
+        return view('superadmin.inspector.create');
     }
 
     /**
@@ -41,7 +41,36 @@ class InspectorAdminController extends Controller
      */
     public function store(StoreInspectorAdminRequest $request)
     {
-        return view('superadmin.inspector.create');
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = "inspectoradmin";
+        $user->save();
+
+        if ($user) {
+            $inspectoradmin = new InspectorAdmin();
+            $inspectoradmin->user_id = $user->id;
+            $inspectoradmin->save();
+
+            if ($inspectoradmin) {
+                return redirect()->route('inspectoradmin.index')
+                    ->with('success', 'Inspector Admin created successfully');
+            } else {
+                return redirect()->route('inspectoradmin.create')
+                    ->with('error', 'Inspector Admin not created');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**

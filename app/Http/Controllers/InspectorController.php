@@ -47,6 +47,30 @@ class InspectorController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+
+        $user = new User();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = "inspector";
+        $user->save();
+
+        if ($user) {
+            $inspector = new Inspector();
+            $inspector->user_id = $user->id;
+            $inspector->save();
+
+            if ($inspector) {
+                return redirect()->route('inspector.index')
+                    ->with('success', 'Inspector created successfully');
+            } else {
+                return redirect()->route('inspector.create')
+                    ->with('error', 'Inspector not created');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
