@@ -36,6 +36,8 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Activate</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -51,14 +53,32 @@
                                                         Inspector Admin
                                                     @elseif($user->role == 'inspector')
                                                         Inspector
-                                                    @elseif($user->role == 'customer')
-                                                        Customer
+                                                    @elseif($user->role == 'user')
+                                                        user
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($user->status == 'active')
+                                                        <span class="btn btn-outline-success">Active</span>
+                                                    @elseif($user->status == 'inactive')
+                                                        <span class="btn btn-outline-danger">Inactive</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($user->status == 'active')
+                                                        <a href="{{ route('user.deactivate', $user->id) }}"
+                                                            class="btn btn-danger">Deactivate</a>
+                                                    @elseif($user->status == 'inactive')
+                                                        <a href="{{ route('user.activate', $user->id) }}"
+                                                            class="btn btn-success">Activate</a>
                                                     @endif
                                                 </td>
                                                 <td>
                                                     <div>
-                                                        <a><i data-feather="edit"></i></a>
-                                                        <a><i data-feather="trash"></i></a>
+                                                        <a href="{{ route('user.edit', $user->id) }}"><i
+                                                                data-feather="edit"></i></a>
+                                                        <a href="{{ route('user.destroy', $user->id) }}"><i
+                                                                data-feather="trash"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

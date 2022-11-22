@@ -35,6 +35,8 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Activate</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -44,9 +46,27 @@
                                                 <td>{{ $inspector->user->name }}</td>
                                                 <td>{{ $inspector->user->email }}</td>
                                                 <td>
+                                                    @if ($inspector->user->status == 'active')
+                                                        <span class="btn btn-outline-success">Active</span>
+                                                    @elseif($inspector->user->status == 'inactive')
+                                                        <span class="btn btn-outline-danger">Inactive</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($inspector->user->status == 'active')
+                                                        <a href="{{ route('inspector.deactivate', $inspector->id) }}"
+                                                            class="btn btn-danger">Deactivate</a>
+                                                    @elseif($inspector->user->status == 'inactive')
+                                                        <a href="{{ route('inspector.activate', $inspector->id) }}"
+                                                            class="btn btn-success">Activate</a>
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <div>
-                                                        <a><i data-feather="edit"></i></a>
-                                                        <a><i data-feather="trash"></i></a>
+                                                        <a href="{{ route('inspector.edit', $inspector->id) }}"><i
+                                                                data-feather="edit"></i></a>
+                                                        <a href="{{ route('inspector.destroy', $inspector->id) }}"><i
+                                                                data-feather="trash"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -44,9 +44,27 @@
                                                 <td>{{ $inspector->user->name }}</td>
                                                 <td>{{ $inspector->user->email }}</td>
                                                 <td>
+                                                    @if ($inspector->user->status == 'active')
+                                                        <span class="btn btn-outline-success">Active</span>
+                                                    @elseif($inspector->user->status == 'inactive')
+                                                        <span class="btn btn-outline-danger">Inactive</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($inspector->user->status == 'active')
+                                                        <a href="{{ route('inspectoradmin.deactivate', $inspector->id) }}"
+                                                            class="btn btn-danger">Deactivate</a>
+                                                    @elseif($inspector->user->status == 'inactive')
+                                                        <a href="{{ route('inspectoradmin.activate', $inspector->id) }}"
+                                                            class="btn btn-success">Activate</a>
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <div>
-                                                        <a><i data-feather="edit"></i></a>
-                                                        <a><i data-feather="trash"></i></a>
+                                                        <a href="{{ route('inspectoradmin.edit', $inspector->id) }}"><i
+                                                                data-feather="edit"></i></a>
+                                                        <a href="{{ route('inspectoradmin.destroy', $inspector->id) }}"><i
+                                                                data-feather="trash"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

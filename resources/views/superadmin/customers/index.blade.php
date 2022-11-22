@@ -48,9 +48,27 @@
                                                 <td>{{ $customer->user->name }}</td>
                                                 <td>{{ $customer->user->email }}</td>
                                                 <td>
+                                                    @if ($customer->user->status == 'active')
+                                                        <span class="btn btn-outline-success">Active</span>
+                                                    @elseif($customer->user->status == 'inactive')
+                                                        <span class="btn btn-outline-danger">Inactive</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($customer->user->status == 'active')
+                                                        <a href="{{ route('customer.deactivate', $customer->id) }}"
+                                                            class="btn btn-danger">Deactivate</a>
+                                                    @elseif($customer->user->status == 'inactive')
+                                                        <a href="{{ route('customer.activate', $customer->id) }}"
+                                                            class="btn btn-success">Activate</a>
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <div>
-                                                        <a><i data-feather="edit"></i></a>
-                                                        <a><i data-feather="trash"></i></a>
+                                                        <a href="{{ route('customer.edit', $customer->id) }}"><i
+                                                                data-feather="edit"></i></a>
+                                                        <a href="{{ route('customer.destroy', $customer->id) }}"><i
+                                                                data-feather="trash"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
