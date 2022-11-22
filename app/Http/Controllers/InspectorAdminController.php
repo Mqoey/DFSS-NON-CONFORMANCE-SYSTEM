@@ -19,7 +19,7 @@ class InspectorAdminController extends Controller
         //
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +28,9 @@ class InspectorAdminController extends Controller
      */
     public function create()
     {
-        //
+        $inspectorAdmin = InspectorAdmin::all();
+        return view('superadmin.inspectoradmin.index')
+            ->with('inspectorAdmin', $inspectorAdmin);
     }
 
     /**
@@ -39,7 +41,7 @@ class InspectorAdminController extends Controller
      */
     public function store(StoreInspectorAdminRequest $request)
     {
-        //
+        return view('superadmin.inspector.create');
     }
 
     /**

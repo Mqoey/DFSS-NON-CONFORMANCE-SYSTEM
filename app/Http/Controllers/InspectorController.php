@@ -16,10 +16,12 @@ class InspectorController extends Controller
      */
     public function index()
     {
-        //
+        $inspector = Inspector::all();
+        return view('superadmin.inspector.index')
+            ->with('inspector', $inspector);
     }
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +30,7 @@ class InspectorController extends Controller
      */
     public function create()
     {
-        //
+        return view('superadmin.inspector.create');
     }
 
     /**
@@ -39,7 +41,12 @@ class InspectorController extends Controller
      */
     public function store(StoreInspectorRequest $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
     }
 
     /**
