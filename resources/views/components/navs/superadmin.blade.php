@@ -27,16 +27,16 @@
                     <i data-feather="check-circle"></i>
                     <span>Inspector</span></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="{{ route('customer.index') }}">All Inspectors</a></li>
-                    <li><a href="{{ route('customer.create') }}">Create Inspector</a></li>
+                    <li><a href="{{ route('inspector.index') }}">All Inspectors</a></li>
+                    <li><a href="{{ route('inspector.create') }}">Create Inspector</a></li>
                 </ul>
             </li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                     <i data-feather="check-square"></i>
                     <span>Inspector Admins</span></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="{{ route('customer.index') }}">All Inspector Admins</a></li>
-                    <li><a href="{{ route('customer.create') }}">Create Inspector Admin</a></li>
+                    <li><a href="{{ route('inspectoradmin.index') }}">All Inspector Admins</a></li>
+                    <li><a href="{{ route('inspectoradmin.create') }}">Create Inspector Admin</a></li>
                 </ul>
             </li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">

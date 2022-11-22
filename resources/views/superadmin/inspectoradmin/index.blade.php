@@ -1,17 +1,17 @@
 @extends('layouts.superadmin')
-@section('title', 'Customers')
+@section('title', 'Inspector Admins')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <h3>Customers</h3>
+                        <h3>Inspector Admins</h3>
                     </div>
                     <div class="col-12 col-sm-6">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Customers</li>
+                            <li class="breadcrumb-item">Inspector Admins</li>
                         </ol>
                     </div>
                 </div>
@@ -35,26 +35,14 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($customers as $customer)
+                                        @foreach ($inspectoradmins as $inspector)
                                             <tr>
-                                                <td>{{ $customer->name }}</td>
-                                                <td>{{ $customer->email }}</td>
-                                                <td>
-                                                    @if ($customer->role == 'superadmin')
-                                                        Super Admin
-                                                    @elseif($customer->role == 'inspectoradmin')
-                                                        Inspector Admin
-                                                    @elseif($customer->role == 'inspector')
-                                                        Inspector
-                                                    @elseif($customer->role == 'customer')
-                                                        Customer
-                                                    @endif
-                                                </td>
+                                                <td>{{ $inspector->user->name }}</td>
+                                                <td>{{ $inspector->user->email }}</td>
                                                 <td>
                                                     <div>
                                                         <a><i data-feather="edit"></i></a>

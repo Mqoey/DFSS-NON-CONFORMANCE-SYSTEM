@@ -17,9 +17,9 @@ class InspectorController extends Controller
      */
     public function index()
     {
-        $inspector = Inspector::all();
+        $inspectors = Inspector::all();
         return view('superadmin.inspector.index')
-            ->with('inspector', $inspector);
+            ->with('inspectors', $inspectors);
     }
 
 

@@ -59,6 +59,7 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/update/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
     Route::post('/delete/customer/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 
+    Route::get('/inspector', [InspectorController::class, 'index'])->name('inspector.index');
     Route::get('/create/inspector', [InspectorController::class, 'create'])->name('inspector.create');
     Route::post('/create/inspector', [InspectorController::class, 'store'])->name('inspector.store');
     Route::post('/edit/inspector/{inspector}', [InspectorController::class, 'edit'])->name('inspector.edit');

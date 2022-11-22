@@ -1,17 +1,17 @@
 @extends('layouts.superadmin')
-@section('title', 'Customers')
+@section('title', 'Inspector Admins')
 @section('content')
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <h3>Add Customer</h3>
+                        <h3>Add Inspector Admin</h3>
                     </div>
                     <div class="col-12 col-sm-6">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Add Customer</li>
+                            <li class="breadcrumb-item">Add Inspector Admin</li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                                     aria-label="Close"></button>
                             </div>
                         @endif
-                        <form class="form theme-form" method="POST" action="{{ route('customer.store') }}">
+                        <form class="form theme-form" method="POST" action="{{ route('inspectoradmin.store') }}">
                             @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -55,27 +55,6 @@
                                             <label class="form-label" for="exampleFormControlInput1">Email address</label>
                                             <input class="form-control" id="exampleFormControlInput1" type="email"
                                                 name="email" required placeholder="name@example.com">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <input class="form-control" name="password" id="exampleInputPassword2"
-                                                type="hidden" value="12345678" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="exampleFormControlSelect9">Select Role </label>
-                                            <select class="form-select digits" name="role"
-                                                id="exampleFormControlSelect9">
-                                                @foreach ($roles as $role)
-                                                    <option value="{{ $role->name }}">{{ $role->description }}</option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                     </div>
                                 </div>

@@ -19,7 +19,7 @@ class InspectorAdminController extends Controller
     {
         $inspectorAdmin = InspectorAdmin::all();
         return view('superadmin.inspectoradmin.index')
-            ->with('inspectorAdmin', $inspectorAdmin);
+            ->with('inspectoradmins', $inspectorAdmin);
     }
 
 
@@ -31,7 +31,7 @@ class InspectorAdminController extends Controller
      */
     public function create()
     {
-        return view('superadmin.inspector.create');
+        return view('superadmin.inspectoradmin.create');
     }
 
     /**
