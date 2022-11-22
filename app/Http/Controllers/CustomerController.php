@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
-use App\Models\Role;
+use App\Models\Airport;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,9 +30,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $airports = Airport::all();
         return view('superadmin.customers.create')
-            ->with('roles', $roles);
+            ->with('airports', $airports);
     }
 
     /**
@@ -55,13 +55,14 @@ class CustomerController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->role = "customer";
         $user->save();
 
         if ($user) {
             $customer = new Customer();
             $customer->user_id = $user->id;
+            $customer->airport_id = $request->airport_id;
             $customer->company = $request->company;
             $customer->save();
 

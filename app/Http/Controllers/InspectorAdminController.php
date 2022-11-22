@@ -6,6 +6,7 @@ use App\Models\InspectorAdmin;
 use App\Http\Requests\StoreInspectorAdminRequest;
 use App\Http\Requests\UpdateInspectorAdminRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class InspectorAdminController extends Controller
 {
@@ -52,7 +53,7 @@ class InspectorAdminController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->role = "inspectoradmin";
         $user->save();
 
