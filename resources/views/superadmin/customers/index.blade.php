@@ -33,28 +33,20 @@
                                 <table class="display" id="basic-1">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Company</th>
+                                            <th>Airport</th>
+                                            <th>Username</th>
                                             <th>Email</th>
-                                            <th>Role</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($customers as $customer)
                                             <tr>
-                                                <td>{{ $customer->name }}</td>
-                                                <td>{{ $customer->email }}</td>
-                                                <td>
-                                                    @if ($customer->role == 'superadmin')
-                                                        Super Admin
-                                                    @elseif($customer->role == 'inspectoradmin')
-                                                        Inspector Admin
-                                                    @elseif($customer->role == 'inspector')
-                                                        Inspector
-                                                    @elseif($customer->role == 'customer')
-                                                        Customer
-                                                    @endif
-                                                </td>
+                                                <td>{{ $customer->company }}</td>
+                                                <td>{{ $customer->airport->name }}</td>
+                                                <td>{{ $customer->user->name }}</td>
+                                                <td>{{ $customer->user->email }}</td>
                                                 <td>
                                                     <div>
                                                         <a><i data-feather="edit"></i></a>

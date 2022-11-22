@@ -94,6 +94,7 @@
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
+    @yield('scripts')
 
 </body>
 
