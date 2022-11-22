@@ -41,8 +41,8 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::get('/user', [SuperAdminController::class, 'viewusers'])->name('user.index');
     Route::get('/create/user', [SuperAdminController::class, 'createuser'])->name('user.create');
     Route::post('/create/user', [SuperAdminController::class, 'storeuser'])->name('user.store');
-    Route::post('/activate/user', [SuperAdminController::class, 'store'])->name('user.activate');
-    Route::post('/deactivate/user', [SuperAdminController::class, 'store'])->name('user.deactivate');
+    Route::get('/activate/{id}', [SuperAdminController::class, 'activate'])->name('user.activate');
+    Route::get('/deactivate/{id}', [SuperAdminController::class, 'deactivate'])->name('user.deactivate');
     Route::post('/edit/user/{user}', [SuperAdminController::class, 'edituser'])->name('user.edit');
     Route::post('/update/user/{user}', [SuperAdminController::class, 'updateuser'])->name('user.update');
     Route::post('/delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');

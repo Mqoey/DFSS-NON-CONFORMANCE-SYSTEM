@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSuperAdminRequest;
+use App\Http\Requests\UpdateSuperAdminRequest;
 use App\Models\Customer;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 
 class SuperAdminController extends Controller
 {
@@ -44,6 +46,37 @@ class SuperAdminController extends Controller
         if ($user) {
             return redirect(route('user.index'))
                 ->with('success', 'Created User Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
+    }
+
+    public function activate(UpdateSuperAdminRequest $request)
+    {
+        // $user = User::find($request->id);
+        dd($request->all);
+        // $user->status = 'active';
+        // $user->save();
+
+        // if ($user) {
+        //     return redirect(route('user.index'))
+        //         ->with('success', 'Activated User Successfully');
+        // } else {
+        //     return redirect()->back()
+        //         ->with('error', 'Something went wrong');
+        // }
+    }
+
+    public function deactivate($id)
+    {
+        $user = User::find($id);
+        $user->status = 'inactive';
+        $user->save();
+
+        if ($user) {
+            return redirect(route('user.index'))
+                ->with('success', 'Deactivated User Successfully');
         } else {
             return redirect()->back()
                 ->with('error', 'Something went wrong');
