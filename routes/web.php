@@ -6,7 +6,7 @@ use App\Http\Controllers\InspectorAdminController;
 use App\Http\Controllers\InspectorController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\NonConformativeFormController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -80,6 +80,15 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/edit/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'edit'])->name('inspectoradmin.edit');
     Route::post('/update/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'update'])->name('inspectoradmin.update');
     Route::post('/delete/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'destroy'])->name('inspectoradmin.destroy');
+
+    Route::get('/nonconformativeform', [NonConformativeFormController::class, 'index'])->name('nonconformativeform.index');
+    Route::get('/create/nonconformativeform', [NonConformativeFormController::class, 'create'])->name('nonconformativeform.create');
+    Route::post('/create/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.store');
+    Route::post('/activate/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.activate');
+    Route::post('/deactivate/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.deactivate');
+    Route::post('/edit/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'edit'])->name('nonconformativeform.edit');
+    Route::post('/update/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'update'])->name('nonconformativeform.update');
+    Route::post('/delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');
 });
 
 require __DIR__ . '/auth.php';

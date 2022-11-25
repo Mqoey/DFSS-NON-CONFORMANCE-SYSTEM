@@ -61,7 +61,7 @@
                                 <div class="input-group"><span class="input-group-text"><i
                                             data-feather="user"></i></span>
                                     <input class="form-control" name="email" type="email" required=""
-                                        placeholder="test@mail.com">
+                                        placeholder="email...">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -69,7 +69,7 @@
                                 <div class="input-group"><span class="input-group-text"><i
                                             data-feather="lock"></i></span>
                                     <input class="form-control" name="password" type="password" name="login[password]"
-                                        required="" placeholder="*********">
+                                        required="" placeholder="password...">
                                     <div class="show-hide"><span class="show"> </span></div>
                                 </div>
                             </div>
@@ -100,6 +100,4 @@
     <script src="assets/js/sweet-alert/sweetalert.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
-
-
 </html>
