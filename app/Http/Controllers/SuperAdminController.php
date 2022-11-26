@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
 use App\Models\Customer;
+use App\Models\NonConformativeForm;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -50,6 +51,12 @@ class SuperAdminController extends Controller
             return redirect()->back()
                 ->with('error', 'Something went wrong');
         }
+    }
+
+    public function nonconformativeform(){
+        $nonconformativeforms = NonConformativeForm::all();
+        return view('superadmin.nonconformativeform.index')
+            ->with('nonconformativeforms', $nonconformativeforms);
     }
 
     public function activate(UpdateSuperAdminRequest $request)

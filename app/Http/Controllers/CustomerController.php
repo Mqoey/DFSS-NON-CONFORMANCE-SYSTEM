@@ -23,6 +23,13 @@ class CustomerController extends Controller
             ->with('customers', $customers);
     }
 
+    public function nonconformativeforms()
+    {
+        $nonconformativeforms = Customer::all();
+        return view('customer.nonconformativeform.index')
+            ->with('nonconformativeforms', $nonconformativeforms);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

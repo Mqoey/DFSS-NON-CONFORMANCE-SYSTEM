@@ -19,14 +19,14 @@
                     <i data-feather="bookmark"></i>
                     <span>Non-Conformative</span></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="{{ route('nonconformativeform.index') }}">All Forms</a></li>
+                    <li><a href="{{ route('customernonconformativeform.index') }}">Raised to me</a></li>
                 </ul>
             </li>
             <li class="sidebar-list">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a class="sidebar-link sidebar-title link-nav" href="route('logout')"
-                       onclick="event.preventDefault();
+                        onclick="event.preventDefault();
                                                 this.closest('form').submit();"><i
                             data-feather="log-out"> </i><span>Logout</span></a>
                 </form>

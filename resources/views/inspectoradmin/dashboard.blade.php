@@ -1,4 +1,2 @@
-@include('layouts.inspectoradmin')
-@section('content')
-    
-@endsection
+@extends('layouts.inspectoradmin')
+@section('title', 'Dashboard')

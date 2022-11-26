@@ -1,4 +1,4 @@
-@extends('layouts.superadmin')
+@extends('layouts.customer')
 @section('title', 'Non-Conformative Forms')
 @section('content')
     <div class="page-body">

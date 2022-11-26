@@ -13,25 +13,31 @@ Route::get('/', function () {
     return redirect(route('customer.dashboard'));
 });
 
-Route::middleware('auth', 'customer')->group(function () {
+Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/customerdashboard', function () {
         return view('customer.dashboard');
     })->name('customer.dashboard');
+
+    Route::get('/customernonconformativeform', [CustomerController::class, 'nonconformativeforms'])->name('customernonconformativeform.index');
 });
 
-Route::middleware('auth', 'inspector')->group(function () {
+Route::middleware(['auth', 'inspector'])->group(function () {
     Route::get('/inspectordashboard', function () {
         return view('inspector.dashboard');
     })->name('inspector.dashboard');
+
+    Route::get('/inspectornonconformativeform', [InspectorAdminController::class, 'nonconformativeforms'])->name('inspectornonconformativeform.index');
+    Route::get('/create/inspectornonconformativeform', [NonConformativeFormController::class, 'create'])->name('inspectornonconformativeform.create');
+    Route::post('/create/inspectornonconformativeform', [NonConformativeFormController::class, 'store'])->name('inspectornonconformativeform.store');
 });
 
-Route::middleware('auth', 'inspectoradmin')->group(function () {
+Route::middleware(['auth', 'inspectoradmin'])->group(function () {
     Route::get('/inspectoradmindashboard', function () {
         return view('inspectoradmin.dashboard');
     })->name('inspectoradmin.dashboard');
 });
 
-Route::middleware('auth', 'superadmin')->group(function () {
+Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/superadmindashboard', function () {
         return view('superadmin.dashboard');
     })->name('superadmin.dashboard');
@@ -81,7 +87,7 @@ Route::middleware('auth', 'superadmin')->group(function () {
     Route::post('/update/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'update'])->name('inspectoradmin.update');
     Route::post('/delete/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'destroy'])->name('inspectoradmin.destroy');
 
-    Route::get('/nonconformativeform', [NonConformativeFormController::class, 'index'])->name('nonconformativeform.index');
+    Route::get('/nonconformativeform', [SuperAdminController::class, 'nonconformativeform'])->name('nonconformativeform.index');
     Route::get('/create/nonconformativeform', [NonConformativeFormController::class, 'create'])->name('nonconformativeform.create');
     Route::post('/create/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.store');
     Route::post('/activate/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.activate');

@@ -12,7 +12,7 @@
     <meta name="author" content="LevierSoft Solutions">
     <link rel="icon" href="{{ asset('assets/images/logo/favicon-icon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon-icon.png') }}" type="image/x-icon">
-    <title>SuperAdmin | @yield('title') </title>
+    <title>Customer | @yield('title') </title>
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
     <link
@@ -53,7 +53,7 @@
                     </div>
                     <div class="logo-icon-wrapper"><a href="/"><img class="img-fluid"
                                 src="../assets/images/logo-icon.png" alt=""></a></div>
-                    @include('components.navs.superadmin')
+                    @include('components.navs.customer')
                 </div>
             </div>
             @yield('content')

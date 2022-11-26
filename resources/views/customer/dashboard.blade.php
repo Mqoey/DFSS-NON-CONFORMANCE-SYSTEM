@@ -1,1 +1,2 @@
-customer@mail.com
+@extends('layouts.customer')
+@section('title', 'Dashboard')

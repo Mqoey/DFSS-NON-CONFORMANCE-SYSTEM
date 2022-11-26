@@ -37,6 +37,7 @@
                                             <th>Airport</th>
                                             <th>Username</th>
                                             <th>Email</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

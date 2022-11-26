@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\NonConformativeForm;
 use App\Http\Requests\StoreNonConformativeFormRequest;
 use App\Http\Requests\UpdateNonConformativeFormRequest;
@@ -25,7 +26,9 @@ class NonConformativeFormController extends Controller
      */
     public function create()
     {
-        //
+        $customers = Customer::all();
+        return view('inspector.nonconformativeform.create')
+            ->with('customers', $customers);
     }
 
     /**

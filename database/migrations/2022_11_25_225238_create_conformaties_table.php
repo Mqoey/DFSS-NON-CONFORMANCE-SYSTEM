@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('conformaties', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('non_conformative_form_id')->nullable()->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('description');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\InspectorAdmin;
 use App\Http\Requests\StoreInspectorAdminRequest;
 use App\Http\Requests\UpdateInspectorAdminRequest;
+use App\Models\NonConformativeForm;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,6 +24,12 @@ class InspectorAdminController extends Controller
             ->with('inspectoradmins', $inspectorAdmin);
     }
 
+    public function nonconformativeforms()
+    {
+        $nonconformativeforms = NonConformativeForm::all();
+        return view('customer.nonconformativeform.index')
+            ->with('nonconformativeforms', $nonconformativeforms);
+    }
 
 
     /**

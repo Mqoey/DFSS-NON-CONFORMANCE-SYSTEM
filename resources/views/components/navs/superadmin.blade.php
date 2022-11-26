@@ -48,6 +48,13 @@
                 </ul>
             </li>
             <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <i data-feather="bookmark"></i>
+                    <span>Non-Conformative</span></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('nonconformativeform.index') }}">All Forms</a></li>
+                </ul>
+            </li>
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
                     <i data-feather="user-check"></i>
                     <span>Users</span></a>
                 <ul class="sidebar-submenu">
