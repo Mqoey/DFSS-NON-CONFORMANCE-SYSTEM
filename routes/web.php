@@ -4,16 +4,23 @@ use App\Http\Controllers\AirportController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InspectorAdminController;
 use App\Http\Controllers\InspectorController;
+use App\Http\Controllers\NonConformativeFormController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\NonConformativeFormController;
+use App\Models\Customer;
+use App\Models\Inspector;
+use App\Models\InspectorAdmin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect(route('customer.dashboard'));
 });
 
-Route::middleware(['auth', 'customer'])->group(function () {
+Route::get('activate', function () {
+    return view('auth.activate');
+})->name('activate');
+
+Route::middleware(['auth', 'customer', 'activated'])->group(function () {
     Route::get('/customerdashboard', function () {
         return view('customer.dashboard');
     })->name('customer.dashboard');
@@ -21,7 +28,7 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/customernonconformativeform', [CustomerController::class, 'nonconformativeforms'])->name('customernonconformativeform.index');
 });
 
-Route::middleware(['auth', 'inspector'])->group(function () {
+Route::middleware(['auth', 'inspector', 'activated'])->group(function () {
     Route::get('/inspectordashboard', function () {
         return view('inspector.dashboard');
     })->name('inspector.dashboard');
@@ -31,16 +38,16 @@ Route::middleware(['auth', 'inspector'])->group(function () {
     Route::post('/create/inspectornonconformativeform', [NonConformativeFormController::class, 'store'])->name('inspectornonconformativeform.store');
 });
 
-Route::middleware(['auth', 'inspectoradmin'])->group(function () {
+Route::middleware(['auth', 'inspectoradmin', 'activated'])->group(function () {
     Route::get('/inspectoradmindashboard', function () {
         return view('inspectoradmin.dashboard');
     })->name('inspectoradmin.dashboard');
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
-    $customers = \App\Models\Customer::all()->count();
-    $inspectors = \App\Models\Inspector::all()->count();
-    $inspectoradmins = \App\Models\InspectorAdmin::all()->count();
+    $customers = Customer::all()->count();
+    $inspectors = Inspector::all()->count();
+    $inspectoradmins = InspectorAdmin::all()->count();
     Route::get('/superadmindashboard', function () use ($inspectoradmins, $inspectors, $customers) {
         return view('superadmin.dashboard')
             ->with('customers', $customers)
