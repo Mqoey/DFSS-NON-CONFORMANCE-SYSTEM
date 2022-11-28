@@ -79,7 +79,7 @@
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
     <script src="{{ asset('assets/js/todo/todo.j') }}s"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
-x    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/chart/chartjs/chart.min.js') }}"></script>
     <script src="{{ asset('assets/js/chart/chartist/chartist.js') }}"></script>

@@ -6,6 +6,7 @@ use App\Models\Inspector;
 use App\Http\Requests\StoreInspectorRequest;
 use App\Http\Requests\UpdateInspectorRequest;
 use App\Models\User;
+use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
 
 class InspectorController extends Controller
@@ -22,7 +23,14 @@ class InspectorController extends Controller
             ->with('inspectors', $inspectors);
     }
 
-
+    public function activate(Request $request, $id)
+    {
+        dd($id);
+        $user = User::find($id);
+        $user->active = 1;
+        $user->save();
+        return redirect()->back();
+    }
 
     /**
      * Show the form for creating a new resource.

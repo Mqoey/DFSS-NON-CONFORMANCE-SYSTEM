@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
-use App\Models\Customer;
 use App\Models\NonConformativeForm;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
 
 class SuperAdminController extends Controller
 {
@@ -59,20 +57,19 @@ class SuperAdminController extends Controller
             ->with('nonconformativeforms', $nonconformativeforms);
     }
 
-    public function activate(UpdateSuperAdminRequest $request)
+    public function activate(UpdateSuperAdminRequest $request, $id)
     {
-        // $user = User::find($request->id);
-        dd($request->all);
-        // $user->status = 'active';
-        // $user->save();
+        $user = User::find($id);
+        $user->status = 'active';
+        $user->save();
 
-        // if ($user) {
-        //     return redirect(route('user.index'))
-        //         ->with('success', 'Activated User Successfully');
-        // } else {
-        //     return redirect()->back()
-        //         ->with('error', 'Something went wrong');
-        // }
+        if ($user) {
+            return redirect(route('user.index'))
+                ->with('success', 'Activated User Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
     }
 
     public function deactivate($id)

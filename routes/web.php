@@ -38,8 +38,14 @@ Route::middleware(['auth', 'inspectoradmin'])->group(function () {
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
-    Route::get('/superadmindashboard', function () {
-        return view('superadmin.dashboard');
+    $customers = \App\Models\Customer::all()->count();
+    $inspectors = \App\Models\Inspector::all()->count();
+    $inspectoradmins = \App\Models\InspectorAdmin::all()->count();
+    Route::get('/superadmindashboard', function () use ($inspectoradmins, $inspectors, $customers) {
+        return view('superadmin.dashboard')
+            ->with('customers', $customers)
+            ->with('inspectors', $inspectors)
+            ->with('inspectoradmins', $inspectoradmins);
     })->name('superadmin.dashboard');
 
     Route::get('/role', [RoleController::class, 'index'])->name('role.index');
@@ -63,8 +69,6 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('/create/customer', [CustomerController::class, 'create'])->name('customer.create');
     Route::post('/create/customer', [CustomerController::class, 'store'])->name('customer.store');
-    Route::post('/activate/customer', [CustomerController::class, 'store'])->name('customer.activate');
-    Route::post('/deactivate/customer', [CustomerController::class, 'store'])->name('customer.deactivate');
     Route::post('/edit/customer/{customer}', [CustomerController::class, 'edit'])->name('customer.edit');
     Route::post('/update/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
     Route::post('/delete/customer/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy');
@@ -72,8 +76,6 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/inspector', [InspectorController::class, 'index'])->name('inspector.index');
     Route::get('/create/inspector', [InspectorController::class, 'create'])->name('inspector.create');
     Route::post('/create/inspector', [InspectorController::class, 'store'])->name('inspector.store');
-    Route::post('/activate/inspector', [InspectorController::class, 'store'])->name('inspector.activate');
-    Route::post('/deactivate/inspector', [InspectorController::class, 'store'])->name('inspector.deactivate');
     Route::post('/edit/inspector/{inspector}', [InspectorController::class, 'edit'])->name('inspector.edit');
     Route::post('/update/inspector/{inspector}', [InspectorController::class, 'update'])->name('inspector.update');
     Route::post('/delete/inspector/{inspector}', [InspectorController::class, 'destroy'])->name('inspector.destroy');
@@ -81,8 +83,6 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/inspectoradmin', [InspectorAdminController::class, 'index'])->name('inspectoradmin.index');
     Route::get('/create/inspectoradmin', [InspectorAdminController::class, 'create'])->name('inspectoradmin.create');
     Route::post('/create/inspectoradmin', [InspectorAdminController::class, 'store'])->name('inspectoradmin.store');
-    Route::post('/activate/inspectoradmin', [InspectorAdminController::class, 'store'])->name('inspectoradmin.activate');
-    Route::post('/deactivate/inspectoradmin', [InspectorAdminController::class, 'store'])->name('inspectoradmin.deactivate');
     Route::post('/edit/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'edit'])->name('inspectoradmin.edit');
     Route::post('/update/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'update'])->name('inspectoradmin.update');
     Route::post('/delete/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'destroy'])->name('inspectoradmin.destroy');
@@ -90,8 +90,6 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/nonconformativeform', [SuperAdminController::class, 'nonconformativeform'])->name('nonconformativeform.index');
     Route::get('/create/nonconformativeform', [NonConformativeFormController::class, 'create'])->name('nonconformativeform.create');
     Route::post('/create/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.store');
-    Route::post('/activate/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.activate');
-    Route::post('/deactivate/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.deactivate');
     Route::post('/edit/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'edit'])->name('nonconformativeform.edit');
     Route::post('/update/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'update'])->name('nonconformativeform.update');
     Route::post('/delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');

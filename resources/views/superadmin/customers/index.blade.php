@@ -56,15 +56,6 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($customer->user->status == 'active')
-                                                        <a href="{{ route('customer.deactivate', $customer->id) }}"
-                                                            class="btn btn-danger">Deactivate</a>
-                                                    @elseif($customer->user->status == 'inactive')
-                                                        <a href="{{ route('customer.activate', $customer->id) }}"
-                                                            class="btn btn-success">Activate</a>
-                                                    @endif
-                                                </td>
-                                                <td>
                                                     <div>
                                                         <a href="{{ route('customer.edit', $customer->id) }}"><i
                                                                 data-feather="edit"></i></a>
