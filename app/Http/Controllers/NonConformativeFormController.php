@@ -39,7 +39,7 @@ class NonConformativeFormController extends Controller
      */
     public function store(StoreNonConformativeFormRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
