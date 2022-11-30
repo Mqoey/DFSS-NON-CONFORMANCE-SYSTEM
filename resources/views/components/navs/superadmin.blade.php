@@ -1,77 +1,65 @@
-<nav class="sidebar-main">
-    <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-    <div id="sidebar-menu">
-        <ul class="sidebar-links" id="simple-bar">
-            <li class="back-btn">
-                <a href="/">
-                    <img class="img-fluid" src="../assets/images/logo-icon.png" alt="">
-                </a>
-                <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true">
-                    </i></div>
-            </li>
-            <li class="sidebar-list">
-                <a class="sidebar-link sidebar-title link-nav" href="/">
-                    <i data-feather="home"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                    <i data-feather="users"></i>
-                    <span>Customers</span></a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('customer.index') }}">All Customers</a></li>
-                    <li><a href="{{ route('customer.create') }}">Create Customer</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                    <i data-feather="check-circle"></i>
-                    <span>Inspector</span></a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('inspector.index') }}">All Inspectors</a></li>
-                    <li><a href="{{ route('inspector.create') }}">Create Inspector</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                    <i data-feather="check-square"></i>
-                    <span>Inspector Admins</span></a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('inspectoradmin.index') }}">All Inspector Admins</a></li>
-                    <li><a href="{{ route('inspectoradmin.create') }}">Create Inspector Admin</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                    <i data-feather="radio"></i>
-                    <span>Airports</span></a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('airport.index') }}">All Airports</a></li>
-                    <li><a href="{{ route('airport.create') }}">Create Airport</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                    <i data-feather="bookmark"></i>
-                    <span>Non-Conformative</span></a>
+<div class="deznav-scroll">
+    <ul class="metismenu" id="menu">
+        <li><a href="/" class="ai-icon" aria-expanded="false">
+                <i class="flaticon-381-networking"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+        </li>
+        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-heart"></i>
+                <span class="nav-text">Customers</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('customer.index') }}">All Customers</a></li>
+                <li><a href="{{ route('customer.create') }}">Create Customer</a></li>
+            </ul>
+        </li>
+        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-television"></i>
+                <span class="nav-text">Inspectors</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('inspector.index') }}">All Inspectors</a></li>
+                <li><a href="{{ route('inspector.create') }}">Create Inspector</a></li>
+            </ul>
+        </li>
+        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-controls-3"></i>
+                <span class="nav-text">Inspector Admins</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('inspectoradmin.index') }}">All Inspector Admins</a></li>
+                <li><a href="{{ route('inspectoradmin.create') }}">Create Inspector Admin</a></li>
+            </ul>
+        </li>
+        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-internet"></i>
+                <span class="nav-text">Airports</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('airport.index') }}">All Airports</a></li>
+                <li><a href="{{ route('airport.create') }}">Create Airport</a></li>
+            </ul>
+        </li>
+        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-notepad"></i>
+                <span class="nav-text">Non-Conformative</span>
+            </a>
+            <ul aria-expanded="false">
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('nonconformativeform.index') }}">All Forms</a></li>
                 </ul>
-            </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
-                    <i data-feather="user-check"></i>
-                    <span>Users</span></a>
-                <ul class="sidebar-submenu">
-                    <li><a href="{{ route('user.index') }}">All Users</a></li>
-                    <li><a href="{{ route('user.create') }}">Create User</a></li>
-                    <li><a href="{{ route('role.index') }}">View Roles</a></li>
-                </ul>
-            </li>
-            <li class="sidebar-list">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a class="sidebar-link sidebar-title link-nav" href="route('logout')"
-                        onclick="event.preventDefault();
-                                                this.closest('form').submit();"><i
-                            data-feather="log-out"> </i><span>Logout</span></a>
-                </form>
-            </li>
-        </ul>
-    </div>
-</nav>
+            </ul>
+        </li>
+        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-381-network"></i>
+                <span class="nav-text">Users</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ route('user.index') }}">All Users</a></li>
+                <li><a href="{{ route('user.create') }}">Create User</a></li>
+                <li><a href="{{ route('role.index') }}">View Roles</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
