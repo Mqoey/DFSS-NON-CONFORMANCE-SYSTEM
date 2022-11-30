@@ -94,12 +94,12 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::post('/update/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'update'])->name('inspectoradmin.update');
     Route::post('/delete/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'destroy'])->name('inspectoradmin.destroy');
 
-//    Route::get('/nonconformativeform', [SuperAdminController::class, 'nonconformativeform'])->name('nonconformativeform.index');
-//    Route::get('/create/nonconformativeform', [NonConformativeFormController::class, 'create'])->name('nonconformativeform.create');
-//    Route::post('/create/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.store');
-//    Route::post('/edit/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'edit'])->name('nonconformativeform.edit');
-//    Route::post('/update/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'update'])->name('nonconformativeform.update');
-//    Route::post('/delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');
+    Route::get('/nonconformativeform', [SuperAdminController::class, 'nonconformativeform'])->name('nonconformativeform.index');
+    Route::get('/create/nonconformativeform', [NonConformativeFormController::class, 'create'])->name('nonconformativeform.create');
+    Route::post('/create/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.store');
+    Route::post('/edit/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'edit'])->name('nonconformativeform.edit');
+    Route::post('/update/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'update'])->name('nonconformativeform.update');
+    Route::post('/delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');
 });
 
 require __DIR__ . '/auth.php';
