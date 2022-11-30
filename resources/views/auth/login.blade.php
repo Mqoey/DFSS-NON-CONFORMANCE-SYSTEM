@@ -35,6 +35,7 @@
                                                 height="70dp" alt=""></a>
                                     </div>
                                     <h4 class="text-center mb-4">Sign in your account</h4>
+                                    <input-error/>
                                     <form class="theme-form login-form" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
