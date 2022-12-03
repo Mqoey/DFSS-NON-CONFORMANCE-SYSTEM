@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Conformaty;
 use App\Http\Requests\StoreConformatyRequest;
 use App\Http\Requests\UpdateConformatyRequest;
+use App\Models\Conformaty;
 
 class ConformatyController extends Controller
 {

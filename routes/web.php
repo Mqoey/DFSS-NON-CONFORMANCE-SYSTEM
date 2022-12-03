@@ -42,6 +42,10 @@ Route::middleware(['auth', 'inspectoradmin', 'activated'])->group(function () {
     Route::get('/inspectoradmindashboard', function () {
         return view('inspectoradmin.dashboard');
     })->name('inspectoradmin.dashboard');
+
+    Route::get('/inspectoradminnonconformativeform', [InspectorAdminController::class, 'adminnonconformativeforms'])->name('inspectoradminnonconformativeform.index');
+    Route::get('/close/{id}', [InspectorAdminController::class, 'close'])->name('close');
+    Route::get('/open/{id}', [InspectorAdminController::class, 'open'])->name('open');
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
@@ -102,4 +106,4 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::post('/delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

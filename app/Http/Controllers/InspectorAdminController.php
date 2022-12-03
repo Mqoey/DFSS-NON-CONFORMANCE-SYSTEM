@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
-use App\Models\InspectorAdmin;
 use App\Http\Requests\StoreInspectorAdminRequest;
-use App\Http\Requests\UpdateInspectorAdminRequest;
+use App\Models\InspectorAdmin;
 use App\Models\NonConformativeForm;
 use App\Models\User;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class InspectorAdminController extends Controller
@@ -15,27 +15,36 @@ class InspectorAdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         $inspectorAdmin = InspectorAdmin::all();
+
         return view('superadmin.inspectoradmin.index')
+            ->with('inspectoradmins', $inspectorAdmin);
+    }
+
+    public function index2()
+    {
+        $inspectorAdmin = InspectorAdmin::all();
+
+        return view('inspectoradmin.nonconformativeform.index')
             ->with('inspectoradmins', $inspectorAdmin);
     }
 
     public function nonconformativeforms()
     {
         $nonconformativeforms = NonConformativeForm::all();
-        return view('customer.nonconformativeform.index')
+
+        return view('inspector.nonconformativeform.index')
             ->with('nonconformativeforms', $nonconformativeforms);
     }
-
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -45,8 +54,8 @@ class InspectorAdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreInspectorAdminRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreInspectorAdminRequest  $request
+     * @return Response
      */
     public function store(StoreInspectorAdminRequest $request)
     {
@@ -57,10 +66,10 @@ class InspectorAdminController extends Controller
         ]);
 
         $user = new User();
-        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->name = $request->first_name.' '.$request->last_name;
         $user->email = $request->email;
         $user->password = Hash::make('12345678');
-        $user->role = "inspectoradmin";
+        $user->role = 'inspectoradmin';
         $user->save();
 
         if ($user) {
@@ -80,48 +89,41 @@ class InspectorAdminController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\InspectorAdmin  $inspectorAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(InspectorAdmin $inspectorAdmin)
+    public function adminnonconformativeforms(InspectorAdmin $inspectorAdmin)
     {
-        //
+        $nonconformativeforms = NonConformativeForm::where('inspector_admin_id', Auth::user()->inspectoradmin->id)->get();
+
+        return view('inspectoradmin.nonconformativeform.index')
+            ->with('nonconformativeforms', $nonconformativeforms);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\InspectorAdmin  $inspectorAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(InspectorAdmin $inspectorAdmin)
+    public function close($id)
     {
-        //
+        $nonconformativeform = NonConformativeForm::find($id);
+        $nonconformativeform->status = 'closed';
+        $nonconformativeform->save();
+
+        if ($nonconformativeform) {
+            return redirect()->back()
+                ->with('success', 'Form Closed Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateInspectorAdminRequest  $request
-     * @param  \App\Models\InspectorAdmin  $inspectorAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateInspectorAdminRequest $request, InspectorAdmin $inspectorAdmin)
+    public function open($id)
     {
-        //
-    }
+        $nonconformativeform = NonConformativeForm::find($id);
+        $nonconformativeform->status = 'pending';
+        $nonconformativeform->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\InspectorAdmin  $inspectorAdmin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(InspectorAdmin $inspectorAdmin)
-    {
-        //
+        if ($nonconformativeform) {
+            return redirect()->back()
+                ->with('success', 'Form Opened Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
     }
 }

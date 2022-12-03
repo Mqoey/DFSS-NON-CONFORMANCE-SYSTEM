@@ -11,7 +11,7 @@
             </a>
             <ul aria-expanded="false">
                 <ul class="sidebar-submenu">
-                    <li><a href="{{ route('nonconformativeform.index') }}">All Forms</a></li>
+                    <li><a href="{{ route('inspectoradminnonconformativeform.index') }}">Assigned to me</a></li>
                 </ul>
             </ul>
         </li>

@@ -26,7 +26,7 @@ class StoreSuperAdminRequest extends FormRequest
         return [
             'email' => 'required|email|unique:users',
             'name' => 'required|string|max:50',
-            'password' => 'required'
+            'password' => 'required',
         ];
     }
 
@@ -40,7 +40,7 @@ class StoreSuperAdminRequest extends FormRequest
         return [
             'email.required' => 'Email is required!',
             'name.required' => 'Name is required!',
-            'password.required' => 'Password is required!'
+            'password.required' => 'Password is required!',
         ];
     }
 }

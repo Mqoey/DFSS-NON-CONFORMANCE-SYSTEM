@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Inspector;
 use App\Http\Requests\StoreInspectorRequest;
 use App\Http\Requests\UpdateInspectorRequest;
+use App\Models\Inspector;
 use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +19,7 @@ class InspectorController extends Controller
     public function index()
     {
         $inspectors = Inspector::all();
+
         return view('superadmin.inspector.index')
             ->with('inspectors', $inspectors);
     }
@@ -29,6 +30,7 @@ class InspectorController extends Controller
         $user = User::find($id);
         $user->active = 1;
         $user->save();
+
         return redirect()->back();
     }
 
@@ -57,10 +59,10 @@ class InspectorController extends Controller
         ]);
 
         $user = new User();
-        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->name = $request->first_name.' '.$request->last_name;
         $user->email = $request->email;
         $user->password = Hash::make('12345678');
-        $user->role = "inspector";
+        $user->role = 'inspector';
         $user->save();
 
         if ($user) {

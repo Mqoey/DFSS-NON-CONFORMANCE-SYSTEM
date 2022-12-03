@@ -14,6 +14,7 @@ class SuperAdminController extends Controller
     public function viewusers()
     {
         $users = User::all();
+
         return view('superadmin.users.index')
             ->with('users', $users);
     }
@@ -21,6 +22,7 @@ class SuperAdminController extends Controller
     public function createuser()
     {
         $roles = Role::all();
+
         return view('superadmin.users.create')
             ->with('roles', $roles);
     }
@@ -36,7 +38,7 @@ class SuperAdminController extends Controller
         ]);
 
         $user = new User();
-        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->name = $request->first_name.' '.$request->last_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
@@ -51,8 +53,10 @@ class SuperAdminController extends Controller
         }
     }
 
-    public function nonconformativeform(){
+    public function nonconformativeform()
+    {
         $nonconformativeforms = NonConformativeForm::all();
+
         return view('superadmin.nonconformativeform.index')
             ->with('nonconformativeforms', $nonconformativeforms);
     }

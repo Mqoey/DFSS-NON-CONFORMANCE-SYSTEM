@@ -42,12 +42,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
     /**
-     * @param string $role
+     * @param  string  $role
      * @return bool
      */
     public function hasRole(string $role): bool
     {
         return $this->getAttribute('role') === $role;
+    }
+
+    public function inspector()
+    {
+        return $this->hasOne(Inspector::class);
+    }
+
+    public function inspectoradmin()
+    {
+        return $this->hasOne(InspectorAdmin::class);
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
     }
 }

@@ -13,16 +13,16 @@ class UserActivated
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @param Closure(Request): (Response|RedirectResponse) $next
      * @return Response|RedirectResponse
      */
-
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check() && Auth::user()->status == 'active') {
             return $next($request);
-        } else
+        } else {
             return redirect(route('activate'));
+        }
     }
 }

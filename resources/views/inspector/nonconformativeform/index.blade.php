@@ -1,61 +1,52 @@
-@extends('layouts.superadmin')
+@extends('layouts.inspector')
 @section('title', 'Non-Conformative Forms')
 @section('content')
-    <div class="page-body">
-        <div class="container-fluid">
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <h3>Non-Conformative Forms</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">All Non-Conformative Forms</h4>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Non-Conformative Forms</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>{{ Session::get('success') }}</strong>
-                                        <button class="btn-close" type="button" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
-                                <table class="display" id="basic-1">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>City</th>
-                                            <th>Address</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($nonconformativeforms as $nonconformativeform)
-                                            <tr>
-                                                <td>{{ $nonconformativeform->name }}</td>
-                                                <td>{{ $nonconformativeform->city }}</td>
-                                                <td>{{ $nonconformativeform->address }}</td>
-                                                <td>
-                                                    <div>
-                                                        <a><i data-feather="edit"></i></a>
-                                                        <a><i data-feather="trash"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                    @if (Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{{ Session::get('success') }}</strong>
+                            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="min-width: 845px">
+                                <thead>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Inspector</th>
+                                    <th>Assigned Admin</th>
+                                    <th>Non Conformity</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($nonconformativeforms as $nonconformativeform)
+                                    <tr>
+                                        <td>{{ $nonconformativeform->customer->user->name }}</td>
+                                        <td>{{ $nonconformativeform->inspector->user->name }}</td>
+                                        <td>{{ $nonconformativeform->inspectoradmin->user->name }}</td>
+                                        <td>{{ $nonconformativeform->non_conformity }}</td>
+                                        <td>{{ $nonconformativeform->status }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Inspector</th>
+                                    <th>Assigned Admin</th>
+                                    <th>Non Conformity</th>
+                                    <th>Status</th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -19,15 +19,16 @@ class SuperUserAuthenticated
     {
         if (Auth::check() && Auth::user()->role == 'superadmin') {
             return $next($request);
-        } else if (Auth::user()->role == 'inspectoradmin') {
+        } elseif (Auth::user()->role == 'inspectoradmin') {
             return redirect(route('inspectoradmin.dashboard'));
-        } else if (Auth::user()->role == 'inspectoradmin') {
+        } elseif (Auth::user()->role == 'inspectoradmin') {
             return redirect(route('inspectoradmin.dashboard'));
-        } else if (Auth::user()->role == 'customer') {
+        } elseif (Auth::user()->role == 'customer') {
             return redirect(route('customer.dashboard'));
-        } else if (Auth::user()->role == 'inspector') {
+        } elseif (Auth::user()->role == 'inspector') {
             return redirect(route('inspector.dashboard'));
         }
+
         return route('login');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Airport;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,6 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
+
         return view('superadmin.customers.index')
             ->with('customers', $customers);
     }
@@ -26,6 +27,7 @@ class CustomerController extends Controller
     public function nonconformativeforms()
     {
         $nonconformativeforms = Customer::all();
+
         return view('customer.nonconformativeform.index')
             ->with('nonconformativeforms', $nonconformativeforms);
     }
@@ -38,6 +40,7 @@ class CustomerController extends Controller
     public function create()
     {
         $airports = Airport::all();
+
         return view('superadmin.customers.create')
             ->with('airports', $airports);
     }
@@ -58,10 +61,10 @@ class CustomerController extends Controller
         ]);
 
         $user = new User();
-        $user->name = $request->first_name . ' ' . $request->last_name;
+        $user->name = $request->first_name.' '.$request->last_name;
         $user->email = $request->email;
         $user->password = Hash::make('12345678');
-        $user->role = "customer";
+        $user->role = 'customer';
         $user->save();
 
         if ($user) {

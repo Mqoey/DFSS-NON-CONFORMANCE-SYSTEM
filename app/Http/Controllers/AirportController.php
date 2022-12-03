@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Airport;
 use App\Http\Requests\StoreAirportRequest;
 use App\Http\Requests\UpdateAirportRequest;
+use App\Models\Airport;
 
 class AirportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $airports = Airport::all();
+
         return view('superadmin.airports.index')
             ->with('airports', $airports);
     }
@@ -23,7 +24,7 @@ class AirportController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -34,7 +35,7 @@ class AirportController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreAirportRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAirportRequest $request)
     {

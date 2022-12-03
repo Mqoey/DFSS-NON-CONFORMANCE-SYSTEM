@@ -19,15 +19,16 @@ class InspectorAuthenticated
     {
         if (Auth::check() && Auth::user()->role == 'inspector') {
             return $next($request);
-        } else if (Auth::user()->role == 'inspectoradmin') {
+        } elseif (Auth::user()->role == 'inspectoradmin') {
             return redirect(route('inspectoradmin.dashboard'));
-        } else if (Auth::user()->role == 'inspectoradmin') {
+        } elseif (Auth::user()->role == 'inspectoradmin') {
             return redirect(route('inspectoradmin.dashboard'));
-        } else if (Auth::user()->role == 'customer') {
+        } elseif (Auth::user()->role == 'customer') {
             return redirect(route('customer.dashboard'));
-        } else if (Auth::user()->role == 'superadmin') {
+        } elseif (Auth::user()->role == 'superadmin') {
             return redirect(route('superadmin.dashboard'));
         }
+
         return route('login');
     }
 }
