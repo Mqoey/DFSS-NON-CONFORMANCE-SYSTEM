@@ -59,7 +59,7 @@
                                                         @if ($nonconformativeform->status == 'pending')
                                                             <a href="{{ route('close', $nonconformativeform->id) }}"
                                                                class="dropdown-item">Close</a>
-                                                        @elseif($nonconformativeform->status == 'closed')
+                                                        @elseif ($nonconformativeform->status == 'closed')
                                                             <a href="{{ route('open', $nonconformativeform->id) }}"
                                                                class="dropdown-item">Open</a>
                                                         @endif

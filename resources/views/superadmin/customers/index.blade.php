@@ -37,7 +37,7 @@
                                             <td>
                                                 @if ($customer->user->status == 'active')
                                                     <span class="btn btn-outline-success">Active</span>
-                                                @elseif($customer->user->status == 'inactive')
+                                                @elseif ($customer->user->status == 'inactive')
                                                     <span class="btn btn-outline-danger">Inactive</span>
                                                 @endif
                                             </td>

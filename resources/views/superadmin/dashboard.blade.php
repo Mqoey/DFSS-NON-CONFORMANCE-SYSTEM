@@ -22,7 +22,7 @@
         <div class="container-fluid ecommerce-dash">
             <div class="row">
                 <div class="">
-                    <a href="{{route('customer.index')}}">
+                    <a href="{{ route('customer.index') }}">
                         <div class="card total-sale">
                             <div class="card-header card-no-border">
                                 <div class="media">
@@ -44,7 +44,7 @@
                             <div class="card-body pt-0">
                                 <div class="sale-main">
                                     <div class="sale-left">
-                                        <h5 class="font-primary">{{$customers}}</h5>
+                                        <h5 class="font-primary">{{ $customers }}</h5>
                                     </div>
                                     <div class="sale-right">
                                         <div id="total-sales-chart"></div>
@@ -55,7 +55,7 @@
                     </a>
                 </div>
                 <div class="col-xl-4 col-md-6 dash-xl-50 dash-50">
-                    <a href="{{route('inspectoradmin.index')}}">
+                    <a href="{{ route('inspectoradmin.index') }}">
                         <div class="card total-sale">
                             <div class="card-header card-no-border">
                                 <div class="media">
@@ -78,7 +78,7 @@
                                 <div class="sale-main">
                                     <div class="sale-left">
                                         <h6 class="font-danger"><i class="icon-arrow-down"></i></h6>
-                                        <h5 class="font-primary">{{$inspectoradmins}}</h5>
+                                        <h5 class="font-primary">{{ $inspectoradmins }}</h5>
                                     </div>
                                     <div class="sale-right">
                                         <div id="total-sales-chart"></div>
@@ -89,7 +89,7 @@
                     </a>
                 </div>
                 <div class="col-xl-4 col-md-6 dash-xl-50 dash-50">
-                    <a href="{{route('inspector.index')}}">
+                    <a href="{{ route('inspector.index') }}">
                         <div class="card total-sale">
                             <div class="card-header card-no-border">
                                 <div class="media">
@@ -112,7 +112,7 @@
                                 <div class="sale-main">
                                     <div class="sale-left">
                                         <h6 class="font-danger"><i class="icon-arrow-down"></i></h6>
-                                        <h5 class="font-primary">{{$inspectors}}</h5>
+                                        <h5 class="font-primary">{{ $inspectors }}</h5>
                                     </div>
                                     <div class="sale-right">
                                         <div id="total-sales-chart"></div>

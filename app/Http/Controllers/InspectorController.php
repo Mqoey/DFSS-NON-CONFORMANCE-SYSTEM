@@ -20,8 +20,7 @@ class InspectorController extends Controller
     {
         $inspectors = Inspector::all();
 
-        return view('superadmin.inspector.index')
-            ->with('inspectors', $inspectors);
+        return view('superadmin.inspector.index', ['inspectors' => $inspectors]);
     }
 
     public function activate(Request $request, $id)

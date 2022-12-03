@@ -14,35 +14,34 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $customers = Customer::all();
 
-        return view('superadmin.customers.index')
-            ->with('customers', $customers);
+        return view('superadmin.customers.index', ['customers' => $customers]);
     }
 
     public function nonconformativeforms()
     {
         $nonconformativeforms = Customer::all();
 
-        return view('customer.nonconformativeform.index')
-            ->with('nonconformativeforms', $nonconformativeforms);
+        return view('customer.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $airports = Airport::all();
 
-        return view('superadmin.customers.create')
-            ->with('airports', $airports);
+        return view('superadmin.customers.create',
+            [
+                'airports' => $airports, ]);
     }
 
     /**

@@ -17,8 +17,7 @@ class AirportController extends Controller
     {
         $airports = Airport::all();
 
-        return view('superadmin.airports.index')
-            ->with('airports', $airports);
+        return view('superadmin.airports.index', ['airports' => $airports]);
     }
 
     /**

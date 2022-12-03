@@ -31,9 +31,7 @@ class NonConformativeFormController extends Controller
         $customers = Customer::all();
         $inspectoradmins = InspectorAdmin::all();
 
-        return view('inspector.nonconformativeform.create')
-            ->with('inspectoradmins', $inspectoradmins)
-            ->with('customers', $customers);
+        return view('inspector.nonconformativeform.create', ['inspectoradmins' => $inspectoradmins, 'customers' => $customers]);
     }
 
     /**

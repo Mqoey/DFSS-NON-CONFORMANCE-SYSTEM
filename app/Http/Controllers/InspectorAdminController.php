@@ -21,24 +21,21 @@ class InspectorAdminController extends Controller
     {
         $inspectorAdmin = InspectorAdmin::all();
 
-        return view('superadmin.inspectoradmin.index')
-            ->with('inspectoradmins', $inspectorAdmin);
+        return view('superadmin.inspectoradmin.index', ['inspectoradmins' => $inspectorAdmin]);
     }
 
     public function index2()
     {
         $inspectorAdmin = InspectorAdmin::all();
 
-        return view('inspectoradmin.nonconformativeform.index')
-            ->with('inspectoradmins', $inspectorAdmin);
+        return view('inspectoradmin.nonconformativeform.index', ['inspectoradmins' => $inspectorAdmin]);
     }
 
     public function nonconformativeforms()
     {
         $nonconformativeforms = NonConformativeForm::all();
 
-        return view('inspector.nonconformativeform.index')
-            ->with('nonconformativeforms', $nonconformativeforms);
+        return view('inspector.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
 
     /**
@@ -93,8 +90,7 @@ class InspectorAdminController extends Controller
     {
         $nonconformativeforms = NonConformativeForm::where('inspector_admin_id', Auth::user()->inspectoradmin->id)->get();
 
-        return view('inspectoradmin.nonconformativeform.index')
-            ->with('nonconformativeforms', $nonconformativeforms);
+        return view('inspectoradmin.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
 
     public function close($id)

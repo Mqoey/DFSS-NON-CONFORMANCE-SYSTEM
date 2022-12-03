@@ -15,16 +15,14 @@ class SuperAdminController extends Controller
     {
         $users = User::all();
 
-        return view('superadmin.users.index')
-            ->with('users', $users);
+        return view('superadmin.users.index', ['users' => $users]);
     }
 
     public function createuser()
     {
         $roles = Role::all();
 
-        return view('superadmin.users.create')
-            ->with('roles', $roles);
+        return view('superadmin.users.create', ['roles' => $roles]);
     }
 
     public function storeuser(StoreSuperAdminRequest $request)
@@ -57,8 +55,7 @@ class SuperAdminController extends Controller
     {
         $nonconformativeforms = NonConformativeForm::all();
 
-        return view('superadmin.nonconformativeform.index')
-            ->with('nonconformativeforms', $nonconformativeforms);
+        return view('superadmin.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
 
     public function activate(UpdateSuperAdminRequest $request, $id)

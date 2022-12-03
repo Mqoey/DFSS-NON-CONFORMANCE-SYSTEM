@@ -34,18 +34,18 @@
                                             <td>
                                                 @if ($user->role == 'superadmin')
                                                     Super Admin
-                                                @elseif($user->role == 'inspectoradmin')
+                                                @elseif ($user->role == 'inspectoradmin')
                                                     Inspector Admin
-                                                @elseif($user->role == 'inspector')
+                                                @elseif ($user->role == 'inspector')
                                                     Inspector
-                                                @elseif($user->role == 'customer')
+                                                @elseif ($user->role == 'customer')
                                                     Customer
                                                 @endif
                                             </td>
                                             <td>
                                                 @if ($user->status == 'active')
                                                     <span class="btn btn-outline-success">Active</span>
-                                                @elseif($user->status == 'inactive')
+                                                @elseif ($user->status == 'inactive')
                                                     <span class="btn btn-outline-danger">Inactive</span>
                                                 @endif
                                             </td>
@@ -75,7 +75,7 @@
                                                         @if ($user->status == 'active')
                                                             <a href="{{ route('user.deactivate', $user->id) }}"
                                                                 class="dropdown-item">Deactivate</a>
-                                                        @elseif($user->status == 'inactive')
+                                                        @elseif ($user->status == 'inactive')
                                                             <a href="{{ route('user.activate', $user->id) }}"
                                                                 class="dropdown-item">Activate</a>
                                                         @endif

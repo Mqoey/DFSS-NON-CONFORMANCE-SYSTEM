@@ -11,14 +11,13 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $roles = Role::all();
 
-        return view('superadmin.roles.index')
-            ->with('roles', $roles);
+        return view('superadmin.roles.index', ['roles' => $roles]);
     }
 
     /**
