@@ -17,6 +17,7 @@
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('assets/images/logo/favicon-icon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon-icon.png') }}" type="image/x-icon">
+    <link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
@@ -64,10 +65,13 @@
     </div>
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/js/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
     <!-- Apex Chart -->
     <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
+    <script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
 
     <!-- Datatable -->
     <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>

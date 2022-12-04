@@ -19,10 +19,9 @@
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
                                     <tr>
-                                        <th>Company</th>
-                                        <th>Airport</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
+                                        <th>Department</th>
+                                        <th>Contact Username</th>
+                                        <th>Contact Email</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -31,7 +30,6 @@
                                     @foreach ($customers as $customer)
                                         <tr>
                                             <td>{{ $customer->company }}</td>
-                                            <td>{{ $customer->airport->name }}</td>
                                             <td>{{ $customer->user->name }}</td>
                                             <td>{{ $customer->user->email }}</td>
                                             <td>
@@ -74,10 +72,9 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Company</th>
-                                        <th>Airport</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
+                                        <th>Department</th>
+                                        <th>Contact Username</th>
+                                        <th>Contact Email</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

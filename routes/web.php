@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AirportController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InspectorAdminController;
 use App\Http\Controllers\InspectorController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Models\Customer;
 use App\Models\Inspector;
 use App\Models\InspectorAdmin;
+use App\Models\NonConformativeForm;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', function () {
@@ -49,13 +49,22 @@ Route::middleware(['auth', 'inspectoradmin', 'activated'])->group(function () {
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
+
     $customers = Customer::all()->count();
     $inspectors = Inspector::all()->count();
     $inspectoradmins = InspectorAdmin::all()->count();
-    Route::get('superadmindashboard', function () use ($inspectoradmins, $inspectors, $customers) {
-        return view('superadmin.dashboard', ['customers' => $customers,
-            'inspectors' => $inspectors,
-            'inspectoradmins' => $inspectoradmins, ]);
+    $nonconformativeforms = NonConformativeForm::all()->count();
+
+    Route::get('superadmindashboard', function () use ($inspectoradmins, $inspectors, $customers, $nonconformativeforms) {
+        return view('superadmin.dashboard',
+            [
+                'customers' => $customers,
+                'inspectors' => $inspectors,
+                'inspectoradmins' => $inspectoradmins,
+                'nonconformativeforms' => $nonconformativeforms,
+            ]
+        );
+
     })->name('superadmin.dashboard');
 
     Route::get('role', [RoleController::class, 'index'])->name('role.index');
@@ -68,13 +77,6 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::post('edit/user/{user}', [SuperAdminController::class, 'edituser'])->name('user.edit');
     Route::post('update/user/{user}', [SuperAdminController::class, 'updateuser'])->name('user.update');
     Route::post('delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');
-
-    Route::get('airport', [AirportController::class, 'index'])->name('airport.index');
-    Route::get('create/airport', [AirportController::class, 'create'])->name('airport.create');
-    Route::post('create/airport', [AirportController::class, 'store'])->name('airport.store');
-    Route::post('edit/airport/{airport}', [AirportController::class, 'edit'])->name('airport.edit');
-    Route::post('update/airport/{airport}', [AirportController::class, 'update'])->name('airport.update');
-    Route::post('delete/airport/{airport}', [AirportController::class, 'destroy'])->name('airport.destroy');
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('create/customer', [CustomerController::class, 'create'])->name('customer.create');
@@ -105,4 +107,4 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::post('delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

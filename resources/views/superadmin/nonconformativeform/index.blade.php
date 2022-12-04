@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">All Customers</h4>
+                        <h4 class="card-title">All Non-Conformative Forms</h4>
                     </div>
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -18,57 +18,33 @@
                         <div class="table-responsive">
                             <table id="example" class="display" style="min-width: 845px">
                                 <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>City</th>
-                                        <th>Address</th>
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Inspector</th>
+                                    <th>Inspector Admin</th>
+                                    <th>Non Conformity</th>
+                                    <th>Status</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($nonconformativeforms as $nonconformativeform)
-                                        <tr>
-                                            <td>{{ $nonconformativeform->name }}</td>
-                                            <td>{{ $nonconformativeform->city }}</td>
-                                            <td>{{ $nonconformativeform->address }}</td>
-                                            <td>
-                                                <div class="dropdown ms-auto text-right">
-                                                    <div class="btn-link" data-bs-toggle="dropdown">
-                                                        <svg width="24px" height="24px" viewBox="0 0 24 24"
-                                                            version="1.1">
-                                                            <g stroke="none" stroke-width="1" fill="none"
-                                                                fill-rule="evenodd">
-                                                                <rect x="0" y="0" width="24"
-                                                                    height="24">
-                                                                </rect>
-                                                                <circle fill="#000000" cx="5" cy="12"
-                                                                    r="2">
-                                                                </circle>
-                                                                <circle fill="#000000" cx="12" cy="12"
-                                                                    r="2">
-                                                                </circle>
-                                                                <circle fill="#000000" cx="19" cy="12"
-                                                                    r="2">
-                                                                </circle>
-                                                            </g>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="customer.edit">Edit</a>
-                                                        <a class="dropdown-item" href="customer.destroy">Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach ($nonconformativeforms as $nonconformativeform)
+                                    <tr>
+                                        <td>{{ $nonconformativeform->customer->user->name }}</td>
+                                        <td>{{ $nonconformativeform->inspector->user->name }}</td>
+                                        <td>{{ $nonconformativeform->inspectoradmin->user->name }}</td>
+                                        <td>{{ $nonconformativeform->non_conformity }}</td>
+                                        <td>{{ $nonconformativeform->status }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>City</th>
-                                        <th>Address</th>
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th>Customer</th>
+                                    <th>Inspector</th>
+                                    <th>Inspector Admin</th>
+                                    <th>Non Conformity</th>
+                                    <th>Status</th>
+                                </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -78,3 +54,4 @@
         </div>
     </div>
 @endsection
+

@@ -17,7 +17,9 @@ class InspectorAdminFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => UserFactory::new()->create()->id,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

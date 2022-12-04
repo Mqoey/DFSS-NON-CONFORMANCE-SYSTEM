@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('inspector_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('inspector_admin_id')->nullable()->constrained('inspector_admins')->onDelete('cascade');
             $table->string('non_conformity')->nullable();
+            $table->string('corrective_action')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

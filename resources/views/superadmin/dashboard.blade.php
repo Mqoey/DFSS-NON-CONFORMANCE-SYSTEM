@@ -1,126 +1,71 @@
 @extends('layouts.superadmin')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="page-body">
-        <div class="container-fluid">
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <h3>
-                            Dashboard</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 col-xxxl-12 col-lg-6">
+                <div class="card">
+                    <div class="card-header border-0 pb-3 d-sm-flex d-block ">
+                        <h4 class="card-title">Latest Non-conformity Forms</h4>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="home-item" href="/"><i
-                                        data-feather="home"></i></a></li>
-                            <li class="breadcrumb-item">Dashboard</li>
-                        </ol>
+                    <div class="card-body">
+                        <div class="row mx-0 align-items-center">
+                            <div class="col-sm-8 col-md-7 col-xxl-7 px-0 text-center mb-3 mb-sm-0">
+                                <div id="chart" class="d-inline-block"></div>
+                            </div>
+                            <div class="col-sm-4 col-md-5 col-xxl-5 px-0">
+                                <div class="chart-deta">
+                                    <div class="col px-0">
+                                        <span class="bg-warning"></span>
+                                        <div class="mx-3">
+                                            <p class="fs-14">Forms Solved</p>
+                                            <h3>21,512</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col px-0">
+                                        <span class="bg-primary"></span>
+                                        <div class="mx-3">
+                                            <p class="fs-14">Forms Pending</p>
+                                            <h3>456,72</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col px-0">
+                                        <span class="bg-success"></span>
+                                        <div class="mx-3">
+                                            <p class="fs-14">Forms Onhold</p>
+                                            <h3>235</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid ecommerce-dash">
-            <div class="row">
-                <div class="">
-                    <a href="{{ route('customer.index') }}">
-                        <div class="card total-sale">
-                            <div class="card-header card-no-border">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="mb-0">Customers</h5>
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mx-0">
+                            <div class="col-sm-12 col-lg-4 px-0">
+                                <h2 class="fs-40 text-black font-w600">{{ $nonconformativeforms }} <small
+                                        class="fs-18 ms-2 font-w600 mb-1">forms</small>
+                                </h2>
+                                <p class="font-w100 fs-20 text-black">Raised</p>
+                                <div class="justify-content-between border-0 d-flex fs-14 align-items-end">
+                                    <a href="javascript:void(0);" class="text-primary">View more <i
+                                            class="las la-long-arrow-alt-right scale5 ms-2"></i></a>
+                                    <div class="text-end">
+                                        <span class="peity-primary" data-style="width:100%;">0,2,1,4</span>
+                                        <h3 class="mt-2 mb-1">+4%</h3>
+                                        <span>than last day</span>
                                     </div>
-                                </div>
-                                <div class="animat-block">
-                                    <ul>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                    </ul>
                                 </div>
                             </div>
-                            <div class="card-body pt-0">
-                                <div class="sale-main">
-                                    <div class="sale-left">
-                                        <h5 class="font-primary">{{ $customers }}</h5>
-                                    </div>
-                                    <div class="sale-right">
-                                        <div id="total-sales-chart"></div>
-                                    </div>
-                                </div>
+                            <div class="col-sm-12 col-lg-8 px-0">
+                                <canvas id="ticketSold" height="200"></canvas>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-xl-4 col-md-6 dash-xl-50 dash-50">
-                    <a href="{{ route('inspectoradmin.index') }}">
-                        <div class="card total-sale">
-                            <div class="card-header card-no-border">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="mb-0">Inspector Admins</h5>
-                                    </div>
-                                </div>
-                                <div class="animat-block">
-                                    <ul>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="sale-main">
-                                    <div class="sale-left">
-                                        <h6 class="font-danger"><i class="icon-arrow-down"></i></h6>
-                                        <h5 class="font-primary">{{ $inspectoradmins }}</h5>
-                                    </div>
-                                    <div class="sale-right">
-                                        <div id="total-sales-chart"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-xl-4 col-md-6 dash-xl-50 dash-50">
-                    <a href="{{ route('inspector.index') }}">
-                        <div class="card total-sale">
-                            <div class="card-header card-no-border">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="mb-0">Inspectors</h5>
-                                    </div>
-                                </div>
-                                <div class="animat-block">
-                                    <ul>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="sale-main">
-                                    <div class="sale-left">
-                                        <h6 class="font-danger"><i class="icon-arrow-down"></i></h6>
-                                        <h5 class="font-primary">{{ $inspectors }}</h5>
-                                    </div>
-                                    <div class="sale-right">
-                                        <div id="total-sales-chart"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>

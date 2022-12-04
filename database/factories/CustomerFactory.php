@@ -17,7 +17,10 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => UserFactory::new()->create()->id,
+            'company' => fake()->company(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
