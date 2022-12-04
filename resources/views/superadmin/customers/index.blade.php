@@ -34,9 +34,11 @@
                                             <td>{{ $customer->user->email }}</td>
                                             <td>
                                                 @if ($customer->user->status == 'active')
-                                                    <span class="btn btn-outline-success">Active</span>
+                                                    <span class="badge light badge-success">
+														<i class="fa fa-circle text-success me-1"></i>Active</span>
                                                 @elseif ($customer->user->status == 'inactive')
-                                                    <span class="btn btn-outline-danger">Inactive</span>
+                                                    <span class="badge light badge-danger">
+														<i class="fa fa-circle text-danger me-1"></i>Inactive</span>
                                                 @endif
                                             </td>
                                             <td>

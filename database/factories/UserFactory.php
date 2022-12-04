@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Http\Requests\StoreCustomerRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
 /**

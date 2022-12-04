@@ -19,21 +19,21 @@
                                         <span class="bg-warning"></span>
                                         <div class="mx-3">
                                             <p class="fs-14">Forms Solved</p>
-                                            <h3>21,512</h3>
+                                            <h3>{{ $closedforms }}</h3>
                                         </div>
                                     </div>
                                     <div class="col px-0">
                                         <span class="bg-primary"></span>
                                         <div class="mx-3">
                                             <p class="fs-14">Forms Pending</p>
-                                            <h3>456,72</h3>
+                                            <h3>{{ $pendingforms }}</h3>
                                         </div>
                                     </div>
                                     <div class="col px-0">
                                         <span class="bg-success"></span>
                                         <div class="mx-3">
                                             <p class="fs-14">Forms Onhold</p>
-                                            <h3>235</h3>
+                                            <h3>{{ $onholdforms }}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-12">
+            <div class="col-xl-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="row mx-0">
@@ -52,7 +52,7 @@
                                 </h2>
                                 <p class="font-w100 fs-20 text-black">Raised</p>
                                 <div class="justify-content-between border-0 d-flex fs-14 align-items-end">
-                                    <a href="javascript:void(0);" class="text-primary">View more <i
+                                    <a href="{{ route('nonconformativeform.index') }}" class="text-primary">View more <i
                                             class="las la-long-arrow-alt-right scale5 ms-2"></i></a>
                                     <div class="text-end">
                                         <span class="peity-primary" data-style="width:100%;">0,2,1,4</span>

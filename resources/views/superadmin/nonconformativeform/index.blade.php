@@ -23,6 +23,7 @@
                                     <th>Inspector</th>
                                     <th>Inspector Admin</th>
                                     <th>Non Conformity</th>
+                                    <th>Corrective Action</th>
                                     <th>Status</th>
                                 </tr>
                                 </thead>
@@ -33,7 +34,19 @@
                                         <td>{{ $nonconformativeform->inspector->user->name }}</td>
                                         <td>{{ $nonconformativeform->inspectoradmin->user->name }}</td>
                                         <td>{{ $nonconformativeform->non_conformity }}</td>
-                                        <td>{{ $nonconformativeform->status }}</td>
+                                        <td>{{ $nonconformativeform->corrective_action }}</td>
+                                        <td>
+                                            @if ($nonconformativeform->status == 'closed')
+                                                <span class="badge light badge-success">
+														<i class="fa fa-circle text-success me-1"></i>Closed</span>
+                                            @elseif ($nonconformativeform->status == 'onhold')
+                                                <span class="badge light badge-primary">
+														<i class="fa fa-circle text-primary me-1"></i>On hold</span>
+                                            @elseif ($nonconformativeform->status == 'pending')
+                                                <span class="badge light badge-danger">
+														<i class="fa fa-circle text-danger me-1"></i>Pending</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -43,6 +56,7 @@
                                     <th>Inspector</th>
                                     <th>Inspector Admin</th>
                                     <th>Non Conformity</th>
+                                    <th>Corrective Action</th>
                                     <th>Status</th>
                                 </tr>
                                 </tfoot>

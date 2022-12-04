@@ -6,10 +6,7 @@ use App\Http\Controllers\InspectorController;
 use App\Http\Controllers\NonConformativeFormController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuperAdminController;
-use App\Models\Customer;
-use App\Models\Inspector;
-use App\Models\InspectorAdmin;
-use App\Models\NonConformativeForm;
+use App\Http\Controllers\SuperAdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', function () {
@@ -49,34 +46,13 @@ Route::middleware(['auth', 'inspectoradmin', 'activated'])->group(function () {
 });
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
-
-    $customers = Customer::all()->count();
-    $inspectors = Inspector::all()->count();
-    $inspectoradmins = InspectorAdmin::all()->count();
-    $nonconformativeforms = NonConformativeForm::all()->count();
-
-    Route::get('superadmindashboard', function () use ($inspectoradmins, $inspectors, $customers, $nonconformativeforms) {
-        return view('superadmin.dashboard',
-            [
-                'customers' => $customers,
-                'inspectors' => $inspectors,
-                'inspectoradmins' => $inspectoradmins,
-                'nonconformativeforms' => $nonconformativeforms,
-            ]
-        );
-
-    })->name('superadmin.dashboard');
+    Route::get('superadmindashboard', [SuperAdminDashboardController::class, 'index'])->name('superadmin.dashboard');
 
     Route::get('role', [RoleController::class, 'index'])->name('role.index');
 
     Route::get('user', [SuperAdminController::class, 'viewusers'])->name('user.index');
-    Route::get('create/user', [SuperAdminController::class, 'createuser'])->name('user.create');
-    Route::post('create/user', [SuperAdminController::class, 'storeuser'])->name('user.store');
     Route::get('activate/{id}', [SuperAdminController::class, 'activate'])->name('user.activate');
     Route::get('deactivate/{id}', [SuperAdminController::class, 'deactivate'])->name('user.deactivate');
-    Route::post('edit/user/{user}', [SuperAdminController::class, 'edituser'])->name('user.edit');
-    Route::post('update/user/{user}', [SuperAdminController::class, 'updateuser'])->name('user.update');
-    Route::post('delete/user/{user}', [SuperAdminController::class, 'destroyuser'])->name('user.destroy');
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
     Route::get('create/customer', [CustomerController::class, 'create'])->name('customer.create');
@@ -100,11 +76,6 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::post('delete/inspectoradmin/{inspectoradmin}', [InspectorAdminController::class, 'destroy'])->name('inspectoradmin.destroy');
 
     Route::get('nonconformativeform', [SuperAdminController::class, 'nonconformativeform'])->name('nonconformativeform.index');
-    Route::get('create/nonconformativeform', [NonConformativeFormController::class, 'create'])->name('nonconformativeform.create');
-    Route::post('create/nonconformativeform', [NonConformativeFormController::class, 'store'])->name('nonconformativeform.store');
-    Route::post('edit/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'edit'])->name('nonconformativeform.edit');
-    Route::post('update/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'update'])->name('nonconformativeform.update');
-    Route::post('delete/nonconformativeform/{nonconformativeform}', [NonConformativeFormController::class, 'destroy'])->name('nonconformativeform.destroy');
 });
 
 require __DIR__ . '/auth.php';

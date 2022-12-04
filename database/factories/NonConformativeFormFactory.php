@@ -22,7 +22,7 @@ class NonConformativeFormFactory extends Factory
             'inspector_admin_id' => random_int(1, 211),
             'non_conformity' => $this->faker->sentence,
             'corrective_action' => $this->faker->sentence,
-            'status' => 'pending',
+            'status' => 'onhold',
             'created_at' => now(),
             'updated_at' => now(),
         ];
