@@ -5,7 +5,7 @@
                 <span class="nav-text">Dashboard</span>
             </a>
         </li>
-        <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+        <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                 <i class="flaticon-381-notepad"></i>
                 <span class="nav-text">Non-Conformative</span>
             </a>

@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-                        SuperAdminSeeder::class,
-                        RoleSeeder::class,
+            SuperAdminSeeder::class,
+            RoleSeeder::class,
             //            InspectorSeeder::class,
             //            InspectorAdminSeeder::class,
             //            CustomerSeeder::class,
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             //            User::factory(12)->create(),
             //            Inspector::factory(346)->create(),
             //            InspectorAdmin::factory(211)->create(),
-//            NonConformativeForm::factory(439)->create(),
+            //            NonConformativeForm::factory(439)->create(),
         ]);
     }
 }

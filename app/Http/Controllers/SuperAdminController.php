@@ -2,53 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSuperAdminRequest;
 use App\Http\Requests\UpdateSuperAdminRequest;
+use App\Models\Customer;
+use App\Models\Inspector;
+use App\Models\InspectorAdmin;
 use App\Models\NonConformativeForm;
-use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class SuperAdminController extends Controller
 {
+    public function dashboard()
+    {
+        $customers = Customer::all()->count();
+        $inspectors = Inspector::all()->count();
+        $inspectoradmins = InspectorAdmin::all()->count();
+        $nonconformativeforms = NonConformativeForm::all()->count();
+        $onholdforms = NonConformativeForm::where('status', 'onhold')->count();
+        $pendingforms = NonConformativeForm::where('status', 'pending')->count();
+        $closedforms = NonConformativeForm::where('status', 'closed')->count();
+
+        return view('superadmin.dashboard',
+            [
+                'customers' => $customers,
+                'inspectors' => $inspectors,
+                'inspectoradmins' => $inspectoradmins,
+                'nonconformativeforms' => $nonconformativeforms,
+                'onholdforms' => $onholdforms,
+                'pendingforms' => $pendingforms,
+                'closedforms' => $closedforms,
+            ]
+        );
+    }
+
     public function viewusers()
     {
         $users = User::all();
 
         return view('superadmin.users.index', ['users' => $users]);
-    }
-
-    public function createuser()
-    {
-        $roles = Role::all();
-
-        return view('superadmin.users.create', ['roles' => $roles]);
-    }
-
-    public function storeuser(StoreSuperAdminRequest $request)
-    {
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-            'role' => 'required',
-        ]);
-
-        $user = new User();
-        $user->name = $request->first_name.' '.$request->last_name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->role = $request->role;
-        $user->save();
-
-        if ($user) {
-            return redirect(route('user.index'))
-                ->with('success', 'Created User Successfully');
-        } else {
-            return redirect()->back()
-                ->with('error', 'Something went wrong');
-        }
     }
 
     public function nonconformativeform()

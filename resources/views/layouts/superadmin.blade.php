@@ -4,17 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="admin, dashboard" />
-    <meta name="author" content="DexignZone" />
-    <meta name="robots" content="index, follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="tixia : tixia School Admission Admin  Bootstrap 5 Template" />
-    <meta property="og:title" content="tixia : tixia School Admission Admin  Bootstrap 5 Template" />
-    <meta property="og:description" content="tixia : tixia School Admission Admin  Bootstrap 5 Template" />
-    <meta property="og:image" content="social-image.png" />
-    <meta name="format-detection" content="telephone=no">
     <title> SuperAdmin | @yield('title') </title>
-    <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('assets/images/logo/favicon-icon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon-icon.png') }}" type="image/x-icon">
     <link href="{{ asset('assets/vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
@@ -68,15 +58,11 @@
     <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/js/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
-    <!-- Apex Chart -->
     <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
     <script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
     <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
-
-    <!-- Datatable -->
     <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-
     <script src="{{ asset('assets/js/custom.min.js') }}"></script>
     <script src="{{ asset('assets/js/deznav-init.js') }}"></script>
 </body>

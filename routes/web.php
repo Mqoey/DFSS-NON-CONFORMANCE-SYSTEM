@@ -6,47 +6,35 @@ use App\Http\Controllers\InspectorController;
 use App\Http\Controllers\NonConformativeFormController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\SuperAdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', function () {
     return redirect(route('customer.dashboard'));
 });
-
 Route::get('activate', function () {
     return view('auth.activate');
 })->name('activate');
-
 Route::middleware(['auth', 'customer', 'activated'])->group(function () {
-    Route::get('customerdashboard', function () {
-        return view('customer.dashboard');
-    })->name('customer.dashboard');
-
+    Route::get('customerdashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
     Route::get('customernonconformativeform', [CustomerController::class, 'nonconformativeforms'])->name('customernonconformativeform.index');
 });
-
 Route::middleware(['auth', 'inspector', 'activated'])->group(function () {
-    Route::get('inspectordashboard', function () {
-        return view('inspector.dashboard');
-    })->name('inspector.dashboard');
+    Route::get('inspectordashboard', [InspectorController::class, 'dashboard'])->name('inspector.dashboard');
 
-    Route::get('inspectornonconformativeform', [InspectorAdminController::class, 'nonconformativeforms'])->name('inspectornonconformativeform.index');
+    Route::get('inspectornonconformativeform', [InspectorController::class, 'nonconformativeforms'])->name('inspectornonconformativeform.index');
     Route::get('create/inspectornonconformativeform', [NonConformativeFormController::class, 'create'])->name('inspectornonconformativeform.create');
     Route::post('create/inspectornonconformativeform', [NonConformativeFormController::class, 'store'])->name('inspectornonconformativeform.store');
 });
-
 Route::middleware(['auth', 'inspectoradmin', 'activated'])->group(function () {
-    Route::get('inspectoradmindashboard', function () {
-        return view('inspectoradmin.dashboard');
-    })->name('inspectoradmin.dashboard');
+    Route::get('inspectoradmindashboard', [InspectorAdminController::class, 'dashboard'])->name('inspectoradmin.dashboard');
 
     Route::get('inspectoradminnonconformativeform', [InspectorAdminController::class, 'adminnonconformativeforms'])->name('inspectoradminnonconformativeform.index');
     Route::get('close/{id}', [InspectorAdminController::class, 'close'])->name('close');
     Route::get('open/{id}', [InspectorAdminController::class, 'open'])->name('open');
+    Route::get('onhold/{id}', [InspectorAdminController::class, 'onhold'])->name('onhold');
 });
-
 Route::middleware(['auth', 'superadmin'])->group(function () {
-    Route::get('superadmindashboard', [SuperAdminDashboardController::class, 'index'])->name('superadmin.dashboard');
+    Route::get('superadmindashboard', [SuperAdminController::class, 'dashboard'])->name('superadmin.dashboard');
 
     Route::get('role', [RoleController::class, 'index'])->name('role.index');
 
@@ -78,4 +66,4 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('nonconformativeform', [SuperAdminController::class, 'nonconformativeform'])->name('nonconformativeform.index');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

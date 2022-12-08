@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInspectorRequest;
-use App\Http\Requests\UpdateInspectorRequest;
 use App\Models\Inspector;
+use App\Models\NonConformativeForm;
 use App\Models\User;
-use http\Env\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class InspectorController extends Controller
@@ -14,7 +18,7 @@ class InspectorController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -23,20 +27,42 @@ class InspectorController extends Controller
         return view('superadmin.inspector.index', ['inspectors' => $inspectors]);
     }
 
-    public function activate(Request $request, $id)
+    public function dashboard()
     {
-        dd($id);
-        $user = User::find($id);
-        $user->active = 1;
-        $user->save();
+        $inspector_id = Auth::user()->inspector->id;
 
-        return redirect()->back();
+        $onholdforms = NonConformativeForm::where('status', 'onhold')
+            ->where('inspector_id', $inspector_id)
+            ->count();
+        $pendingforms = NonConformativeForm::where('status', 'pending')
+            ->where('inspector_id', $inspector_id)
+            ->count();
+        $closedforms = NonConformativeForm::where('status', 'closed')
+            ->where('inspector_id', $inspector_id)
+            ->count();
+
+        return view('inspector.dashboard',
+            [
+                'onholdforms' => $onholdforms,
+                'pendingforms' => $pendingforms,
+                'closedforms' => $closedforms,
+            ]
+        );
+    }
+
+    public function nonconformativeforms()
+    {
+        $inspector_id = Auth::user()->inspector->id;
+
+        $nonconformativeforms = NonConformativeForm::where('inspector_id', $inspector_id)->get();
+
+        return view('inspector.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -46,8 +72,8 @@ class InspectorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreInspectorRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreInspectorRequest  $request
+     * @return RedirectResponse
      */
     public function store(StoreInspectorRequest $request)
     {
@@ -79,50 +105,5 @@ class InspectorController extends Controller
         } else {
             return redirect()->back()->with('error', 'Something went wrong');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Inspector  $inspector
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Inspector $inspector)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Inspector  $inspector
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Inspector $inspector)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateInspectorRequest  $request
-     * @param  \App\Models\Inspector  $inspector
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateInspectorRequest $request, Inspector $inspector)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Inspector  $inspector
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Inspector $inspector)
-    {
-        //
     }
 }

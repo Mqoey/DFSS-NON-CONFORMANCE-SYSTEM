@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCustomerRequest;
-use App\Http\Requests\UpdateCustomerRequest;
-use App\Models\Airport;
 use App\Models\Customer;
+use App\Models\NonConformativeForm;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
@@ -14,7 +18,7 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -23,9 +27,34 @@ class CustomerController extends Controller
         return view('superadmin.customers.index', ['customers' => $customers]);
     }
 
+    public function dashboard()
+    {
+        $customer_id = Auth::user()->customer->id;
+
+        $onholdforms = NonConformativeForm::where('status', 'onhold')
+            ->where('customer_id', $customer_id)
+            ->count();
+        $pendingforms = NonConformativeForm::where('status', 'pending')
+            ->where('customer_id', $customer_id)
+            ->count();
+        $closedforms = NonConformativeForm::where('status', 'closed')
+            ->where('customer_id', $customer_id)
+            ->count();
+
+        return view('customer.dashboard',
+            [
+                'onholdforms' => $onholdforms,
+                'pendingforms' => $pendingforms,
+                'closedforms' => $closedforms,
+            ]
+        );
+    }
+
     public function nonconformativeforms()
     {
-        $nonconformativeforms = Customer::all();
+        $customer_id = Auth::user()->customer->id;
+
+        $nonconformativeforms = NonConformativeForm::where('customer_id', $customer_id)->get();
 
         return view('customer.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
@@ -33,26 +62,21 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create()
     {
-        $airports = Airport::all();
-
-        return view('superadmin.customers.create',
-            [
-                'airports' => $airports, ]);
+        return view('superadmin.customers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCustomerRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  StoreCustomerRequest  $request
+     * @return RedirectResponse
      */
     public function store(StoreCustomerRequest $request)
     {
-        // dd($request->all());
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -69,7 +93,6 @@ class CustomerController extends Controller
         if ($user) {
             $customer = new Customer();
             $customer->user_id = $user->id;
-            $customer->airport_id = $request->airport_id;
             $customer->company = $request->company;
             $customer->save();
 
@@ -83,50 +106,5 @@ class CustomerController extends Controller
         } else {
             return redirect()->back()->with('error', 'Something went wrong');
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCustomerRequest  $request
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customer $customer)
-    {
-        //
     }
 }

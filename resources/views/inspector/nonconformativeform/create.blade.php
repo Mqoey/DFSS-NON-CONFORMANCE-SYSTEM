@@ -56,6 +56,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleFormControlInput1">Corrective Action</label>
+                                            <textarea class="form-control" name="corrective_action" id="exampleFormControlInput1"
+                                                      rows="3" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button class="btn btn-primary" type="submit">Submit</button>

@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">All Customers</h4>
+                        <h4 class="card-title">All Inspector Admins</h4>
                     </div>
                     @if (Session::has('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">

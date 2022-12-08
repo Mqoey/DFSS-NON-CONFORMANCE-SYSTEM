@@ -22,6 +22,7 @@
                                     <th>Customer</th>
                                     <th>Inspector</th>
                                     <th>Non Conformity</th>
+                                    <th>Corrective Form</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -32,7 +33,19 @@
                                             <td>{{ $nonconformativeform->customer->user->name }}</td>
                                             <td>{{ $nonconformativeform->inspector->user->name }}</td>
                                             <td>{{ $nonconformativeform->non_conformity }}</td>
-                                            <td>{{ $nonconformativeform->status }}</td>
+                                            <td>{{ $nonconformativeform->corrective_action }}</td>
+                                            <td>
+                                                @if ($nonconformativeform->status == 'closed')
+                                                    <span class="badge light badge-success">
+														<i class="fa fa-circle text-success me-1"></i>Closed</span>
+                                                @elseif ($nonconformativeform->status == 'onhold')
+                                                    <span class="badge light badge-primary">
+														<i class="fa fa-circle text-primary me-1"></i>On hold</span>
+                                                @elseif ($nonconformativeform->status == 'pending')
+                                                    <span class="badge light badge-danger">
+														<i class="fa fa-circle text-danger me-1"></i>Pending</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="dropdown ms-auto text-right">
                                                     <div class="btn-link" data-bs-toggle="dropdown">
@@ -59,9 +72,14 @@
                                                         @if ($nonconformativeform->status == 'pending')
                                                             <a href="{{ route('close', $nonconformativeform->id) }}"
                                                                class="dropdown-item">Close</a>
+                                                            <a href="{{ route('onhold', $nonconformativeform->id) }}"
+                                                               class="dropdown-item">On hold</a>
                                                         @elseif ($nonconformativeform->status == 'closed')
-                                                            <a href="{{ route('open', $nonconformativeform->id) }}"
-                                                               class="dropdown-item">Open</a>
+                                                            <a href="{{ route('onhold', $nonconformativeform->id) }}"
+                                                               class="dropdown-item">On hold</a>
+                                                        @elseif ($nonconformativeform->status == 'onhold')
+                                                            <a href="{{ route('close', $nonconformativeform->id) }}"
+                                                               class="dropdown-item">Close</a>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -74,6 +92,7 @@
                                     <th>Customer</th>
                                     <th>Inspector</th>
                                     <th>Non Conformity</th>
+                                    <th>Corrective Form</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

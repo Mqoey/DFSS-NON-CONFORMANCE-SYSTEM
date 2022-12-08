@@ -53,7 +53,7 @@
         </li>
         <li><a class="has-arrow ai-icon" href="#" aria-expanded="false">
                 <i class="flaticon-381-network"></i>
-                <span class="nav-text">Roperts</span>
+                <span class="nav-text">Reports</span>
             </a>
             <ul aria-expanded="false">
                 <li><a href="#">Daily</a></li>

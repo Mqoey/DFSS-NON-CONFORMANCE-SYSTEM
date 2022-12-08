@@ -6,7 +6,10 @@ use App\Http\Requests\StoreInspectorAdminRequest;
 use App\Models\InspectorAdmin;
 use App\Models\NonConformativeForm;
 use App\Models\User;
-use Illuminate\Http\Response;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +18,7 @@ class InspectorAdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -31,9 +34,34 @@ class InspectorAdminController extends Controller
         return view('inspectoradmin.nonconformativeform.index', ['inspectoradmins' => $inspectorAdmin]);
     }
 
+    public function dashboard()
+    {
+        $inspectoradmin_id = Auth::user()->inspectoradmin->id;
+
+        $onholdforms = NonConformativeForm::where('status', 'onhold')
+            ->where('inspector_admin_id', $inspectoradmin_id)
+            ->count();
+        $pendingforms = NonConformativeForm::where('status', 'pending')
+            ->where('inspector_admin_id', $inspectoradmin_id)
+            ->count();
+        $closedforms = NonConformativeForm::where('status', 'closed')
+            ->where('inspector_admin_id', $inspectoradmin_id)
+            ->count();
+
+        return view('inspectoradmin.dashboard',
+            [
+                'onholdforms' => $onholdforms,
+                'pendingforms' => $pendingforms,
+                'closedforms' => $closedforms,
+            ]
+        );
+    }
+
     public function nonconformativeforms()
     {
-        $nonconformativeforms = NonConformativeForm::all();
+        $inspector_admin_id = Auth::user()->inspectoradmin->id;
+
+        $nonconformativeforms = NonConformativeForm::where('inspector_admin_id', $inspector_admin_id)->get();
 
         return view('inspector.nonconformativeform.index', ['nonconformativeforms' => $nonconformativeforms]);
     }
@@ -41,7 +69,7 @@ class InspectorAdminController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -52,7 +80,7 @@ class InspectorAdminController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreInspectorAdminRequest  $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(StoreInspectorAdminRequest $request)
     {
@@ -117,6 +145,21 @@ class InspectorAdminController extends Controller
         if ($nonconformativeform) {
             return redirect()->back()
                 ->with('success', 'Form Opened Successfully');
+        } else {
+            return redirect()->back()
+                ->with('error', 'Something went wrong');
+        }
+    }
+
+    public function onhold($id)
+    {
+        $nonconformativeform = NonConformativeForm::find($id);
+        $nonconformativeform->status = 'onhold';
+        $nonconformativeform->save();
+
+        if ($nonconformativeform) {
+            return redirect()->back()
+                ->with('success', 'Form On hold Successfully');
         } else {
             return redirect()->back()
                 ->with('error', 'Something went wrong');
